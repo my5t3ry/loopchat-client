@@ -10,22 +10,21 @@ freaky friend beats  :musical_score:
 LoopChat is a real-time music collaboration application. Think Google Docs, but for making beats, noise loops, etc. with your friends!
 
 ## Functional Requirements
-1. **Real-Time Music Generation**: players shall be able to generate sounds and apply treatments in real-time with session-mates.
-2. **MIDI Generation**: players shall be able to generate MIDI data from their browsers.
-3. **MIDI Editor**: players shall be able to edit midi sequences in real time.
-4. **Record Audio**: players shall be able to record audio from the computer microphone.
-5. **Save/Export**: players shall be able to save drafts and export to a variety of audio formats.
-6. **Create Samples**: players shall be able to upload audio snippets to create samples.
-7. **Create MIDI Sequences**: players shall be able to generate midi sequences similar to samples.
-8. **Create Timelines**: players shall be able to create multiple timelines of audio. Time lines can be converted into loops/samples.
-9. **Create Tracks**: players shall be able to create multiple tracks of audio using any input source (including loops/samples). Tracks can be converted to loops/samples.
-10. **Create Loops**: players shall be able to create loops composed of a number of tracks or other loops.
-11. **Playback**: players shall be able to *Play*, *Pause*, *Stop*, *FF*, *RW*, *Reverse*, *Scrub* timelines/samples.
-12. **Track Edit**: players shall be able to *Cut*, *Copy*, *Move*, *Paste*, *Crop*, *Mute*, *Edit Volume* of tracks.
-13. **Tempo**: players shall be able to edit the *tempo* and *signature* of individual timelines. This way, multiple timelines can be composed to generate polyrhythms. Additionally, players shall have fine grained control over quantizing MIDI, samples, and granularity of the visual tempo grid.
-14. **Instruments**: players shall be able to choose a variety of instruments to play including *Sampler*, *Synths*, *Drums*, *Sequencer*.
-15. **Players**: players can join *sessions*, *projects*, *groups*. Players can make a profile to show what groups/projects they work on. Players in a session can chat in real-time.
-16. **Publish**: players or groups can publish selected *works*, *snippets*, or *sessions*.
+* **Real-Time Music Generation**: players shall be able to generate sounds and apply treatments in real-time with session-mates.
+* **MIDI Generation**: players shall be able to generate MIDI data from their browsers.
+* **MIDI Editor**: players shall be able to edit midi sequences in real time.
+* **Record Audio**: players shall be able to record audio from the computer microphone.
+* **Save/Export**: players shall be able to save drafts and export to a variety of audio formats.
+* **Create Samples**: players shall be able to upload audio snippets to create samples.
+* **Create MIDI Sequences**: players shall be able to generate midi sequences similar to samples.
+* **Create Timelines**: players shall be able to create multiple timelines of audio. Time lines can be converted into loops/samples.
+* **Create Tracks**: players shall be able to create multiple tracks of audio using any input source (including loops/samples). Tracks can be converted to loops/samples.
+* **Create Loops**: players shall be able to create loops composed of a number of tracks or other loops.
+* **Playback**: players shall be able to *Play*, *Pause*, *Stop*, *FF*, *RW*, *Reverse*, *Scrub* timelines/samples.
+* **Track Edit**: players shall be able to *Cut*, *Copy*, *Move*, *Paste*, *Crop*, *Mute*, *Edit Volume* of tracks.
+* **Tempo**: players shall be able to edit the *tempo* and *signature* of individual timelines. This way, multiple timelines can be composed to generate polyrhythms. Additionally, players shall have fine grained control over quantizing MIDI, samples, and granularity of the visual tempo grid.. **Instruments**: players shall be able to choose a variety of instruments to play including *Sampler*, *Synths*, *Drums*, *Sequencer*.
+* **Players**: players can join *sessions*, *projects*, *groups*. Players can make a profile to show what groups/projects they work on. Players in a session can chat in real-time.
+* **Publish**: players or groups can publish selected *works*, *snippets*, or *sessions*.
 
 ## Ontology
 * **Collaboration Context**: Since collaboration is a primary focus of this application, it is important for each component to keep of the players which are currently operating on it. The collaboration context is a basic way for describe player interactions at varying levels of granularity.
@@ -34,9 +33,9 @@ LoopChat is a real-time music collaboration application. Think Google Docs, but 
 * **MIDI Sequence**: Similar to samples, MIDI Sequences have independent timelines and are the basic chunk MIDI data. Each MIDI Sequence has an instrument that it uses to translate the midi data to audio.
 * **Track**: A track is a linear sequence of audio coming from an input source. Samples can be dragged onto tracks. A track can co-exist with parallel tracks on the same timeline. A single track or a collection of tracks on the same timeline can be converted to samples. Midi can be directly input on a track or a MIDI Sequence can be dragged onto a track.
 * **Instrument**: For MIDI data (generated by MIDI sequences), an instrument must be assigned to convert the midi data into audio. The most important instruments are
-  1. **Sample Sequencer**: Sequences a bank of audio samples. Generates a MIDI Sequence which is translated to playing the supplied audio samples. The interface for the drum machine will allow players to generate MIDI Sequences using their specified sample bank.
-  2. **Synth Sequencer**: Sequences MIDI data to play synths. (Could be in same interface as Drum Sequencer)
-  3. **Mic/Line In**: directly record from a mic or line in.
+  **Sample Sequencer**: Sequences a bank of audio samples. Generates a MIDI Sequence which is translated to playing the supplied audio samples. The interface for the drum machine will allow players to generate MIDI Sequences using their specified sample bank.
+  **Synth Sequencer**: Sequences MIDI data to play synths. (Could be in same interface as Drum Sequencer)
+  **Mic/Line In**: directly record from a mic or line in.
 * **Effects**: all audio can be treated with a daisy chain of effects.
 
 ## UX
@@ -62,3 +61,47 @@ LoopChat is a real-time music collaboration application. Think Google Docs, but 
 * [TunaJS](https://github.com/Theodeus/tuna)
 * [NexusUI](http://www.nexusosc.com/)
 * [Example Web Synth](http://joeldarling.com/joliesynth/)
+
+
+after testing realtime daw syncing (audio/midi), i decided to scrap the "daw bridge" concept and instead try to implement a multiplayer midi only web daw  where only the midi data has to be propagated to session clients. every user sees and hears the same (except channel solo/monitoring), the audio synthesis is done client side only. i found  the wam (web audio modules) api which enables to run c++ build plugins on js engines, they already ported some open source vst and they works flawless.i found a abandoned project where somebody collected feature requirements and also did some wireframes. i will convert the concept to tickets and streamline my affords instead of loosing myself cloning every god dam daw related technology on github and and getting nowhere. i pushed everything in my git repo. contributions are welcome. these are the requirements, ->
+
+
+
+
+
+## functional requirements
+* **real-time music generation**: players shall be able to generate sounds and apply treatments in real-time with session-mates.
+* **midi generation**: players shall be able to generate midi data from their browsers.
+* **midi editor**: players shall be able to edit midi sequences in real time.
+* **record audio**: players shall be able to record audio from the computer microphone.
+* **save/export**: players shall be able to save drafts and export to a variety of audio formats.
+* **create samples**: players shall be able to upload audio snippets to create samples.
+* **create midi sequences**: players shall be able to generate midi sequences similar to samples.
+* **create timelines**: players shall be able to create multiple timelines of audio. time lines can be converted into loops/samples.
+* **create tracks**: players shall be able to create multiple tracks of audio using any input source (including loops/samples). tracks can be converted to loops/samples.
+* **create loops**: players shall be able to create loops composed of a number of tracks or other loops.
+* **playback**: players shall be able to *play*, *pause*, *stop*, *ff*, *rw*, *reverse*, *scrub* timelines/samples.
+* **track edit**: players shall be able to *cut*, *copy*, *move*, *paste*, *crop*, *mute*, *edit volume* of tracks.
+* **tempo**: players shall be able to edit the *tempo* and *signature* of individual timelines. this way, multiple timelines can be composed to generate polyrhythms. additionally, players shall have fine grained control over quantizing midi, samples, and granularity of the visual tempo grid.. **instruments**: players shall be able to choose a variety of instruments to play including *sampler*, *synths*, *drums*, *sequencer*.
+* **players**: players can join *sessions*, *projects*, *groups*. players can make a profile to show what groups/projects they work on. players in a session can chat in real-time.
+* **publish**: players or groups can publish selected *works*, *snippets*, or *sessions*.
+
+## ontology
+* **collaboration context**: since collaboration is a primary focus of this application, it is important for each component to keep of the players which are currently operating on it. the collaboration context is a basic way for describe player interactions at varying levels of granularity.
+* **timeline**: playback of all audio must take place in a timeline. timelines have their own specified *duration*, *tempo*, and *time signature*. timelines have their own collaboration contexts.
+* **sample**: every snippet of audio is a sample. a sample can be edited, treated with effects, and looped. a sample can be created by importing pre-existing audio, or by converting a timeline/track into a sample. each sample has its own timeline.
+* **midi sequence**: similar to samples, midi sequences have independent timelines and are the basic chunk midi data. each midi sequence has an instrument that it uses to translate the midi data to audio.
+* **track**: a track is a linear sequence of audio coming from an input source. samples can be dragged onto tracks. a track can co-exist with parallel tracks on the same timeline. a single track or a collection of tracks on the same timeline can be converted to samples. midi can be directly input on a track or a midi sequence can be dragged onto a track.
+* **instrument**: for midi data (generated by midi sequences), an instrument must be assigned to convert the midi data into audio. the most important instruments are
+  **sample sequencer**: sequences a bank of audio samples. generates a midi sequence which is translated to playing the supplied audio samples. the interface for the drum machine will allow players to generate midi sequences using their specified sample bank.
+  **synth sequencer**: sequences midi data to play synths. (could be in same interface as drum sequencer)
+  **mic/line in**: directly record from a mic or line in.
+* **effects**: all audio can be treated with a daisy chain of effects.
+
+## ux
+* **active context**: there can only be one active timeline context that a given player can edit/playback. this timeline can be either a sequence, sample, or track collection (called a timeline in ui). since the active context can be comprised of other timelines which can be simultaneously edited by other players, when a context is active for a given user, all sub-timelines will be frozen at time of opening the context. players should be able to see when sub-contexts have been edited by their collaborators and either choose to merge the changes or maintain a separate branch of the sub-contexts. additionally, each active context will have access to effects and be able to apply an effects daisy chain.
+* **timelines**: this is a collection of track collections.
+* **samples**: this is a collection of samples.
+* **sequences**: this is a collection of sequences.
+* **current session**: list the collaborators (online/offline) and session details.
+* **chat**: chat interface for player communication.
