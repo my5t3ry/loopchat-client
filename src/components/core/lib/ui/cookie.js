@@ -1,13 +1,13 @@
 "use strict";
 
-class UIcookieInitController {
-   static UIcookieInit() {
+export class  UIcookieInitController {
+     UIcookieInit() {
         const cookies = document.cookie;
 
         if (cookies.indexOf("cookieAccepted") > -1) {
             DOM.eatCookies.remove();
         } else {
-            DOM.eatCookies.onclick = UIcookieInitController.UIcookieClick;
+            DOM.eatCookies.onclick = this.UIcookieClick;
         }
 
         // Delete all the cookies if it's not only accepted.
@@ -21,7 +21,7 @@ class UIcookieInitController {
         }
     }
 
-  static  UIcookieClick() {
+     UIcookieClick() {
         gsuiPopup.confirm(
             "Cookie law",
             "Do you accept to let the GridSound's DAW<br/>"

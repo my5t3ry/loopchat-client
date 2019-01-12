@@ -1,21 +1,12 @@
 import DAWCore, {Composition, LocalStorage, Pianoroll} from '../core.js'
-import {
-    UIkeyboardUiControler,
-    UICompositionChangedControler,
-    UIcompositionsInitControlller,
-    UIcontrolsCurrentTimeController,
-    UIdropController,
-    UIauthInitController,
-    UIdomInitController
-} from './ui.js'
-
+import './ui/dom'
 export class Bootloader {
 
     constructor() {
     }
 
     async bootstrap() {
-        const DOM = new UIdomInitController().UIdomInit;
+        const DOM =  UIdomInit();
         window.DOM = DOM;
         DAWCore.Compositon = new Composition();
         DAWCore.History = new History();
@@ -38,44 +29,68 @@ export class Bootloader {
 
         DAW.initPianoroll();
 
-        window.onkeyup = new UIkeyboardUiControler.UIkeyboardUp;
-        window.onkeydown = new UIkeyboardUiControler.UIkeyboardDown;
-        window.onbeforeunload = new UICompositionChangedControler.UIcompositionBeforeUnload;
-        document.body.ondrop = new UIdropController.UIdrop;
+        window.onkeyup = UIkeyboardUp;
+        window.onkeydown = UIkeyboardDown;
+        window.onbeforeunload = UIcompositionBeforeUnload;
+        document.body.ondrop = UIdrop;
         document.body.ondragover = () => false;
-        DAW.cb.focusOn = new UIcontrolsCurrentTimeController.UIcontrolsFocusOn;
-        DAW.cb.currentTime = new UIcontrolsCurrentTimeController.UIcontrolsCurrentTime;
-        DAW.cb.clockUpdate = new UIcontrolsCurrentTimeController.UIcontrolsClockUpdate;
-        DAW.cb.compositionOpened = new UICompositionChangedControler.UIcompositionOpened;
-        DAW.cb.compositionClosed = new UICompositionChangedControler.UIcompositionClosed;
-        DAW.cb.compositionChanged = new UICompositionChangedControler.UIcompositionChanged;
-        DAW.cb.compositionDeleted = new UICompositionChangedControler.UIcompositionDeleted;
-        DAW.cb.compositionAdded = new UICompositionChangedControler.UIcompositionAdded;
-        DAW.cb.compositionLoading = new UIcompositionsInitControlller.UIcompositionLoading;
-        DAW.cb.compositionSavedStatus = new UICompositionChangedControler.UIcompositionSavedStatus;
-        DAW.cb.compositionSavingPromise = new UIcompositionsInitControlller.UIauthSaveComposition;
-        DAW.cb.analyserFilled = data => new UIauthInitController.UImasterAnalyserInit.draw(data);
+        DAW.cb.focusOn = UIcontrolsFocusOn;
+        DAW.cb.currentTime = UIcontrolsCurrentTime;
+        DAW.cb.clockUpdate = UIcontrolsClockUpdate;
+        DAW.cb.compositionOpened = UIcompositionOpened;
+        DAW.cb.compositionClosed = UIcompositionClosed;
+        DAW.cb.compositionChanged = UIcompositionChanged;
+        DAW.cb.compositionDeleted = UIcompositionDeleted;
+        DAW.cb.compositionAdded = UIcompositionAdded;
+        DAW.cb.compositionLoading = UIcompositionLoading;
+        DAW.cb.compositionSavedStatus = UIcompositionSavedStatus;
+        DAW.cb.compositionSavingPromise = UIauthSaveComposition;
+        DAW.cb.analyserFilled = data => UImasterAnalyser.draw( data );
         DAW.cb.pause =
-            DAW.cb.stop = () => DOM.play.classList.remove("ico-pause");
-        DAW.cb.play = () => DOM.play.classList.add("ico-pause");
+            DAW.cb.stop = () => DOM.play.classList.remove( "ico-pause" );
+        DAW.cb.play = () => DOM.play.classList.add( "ico-pause" );
 
         window.onresize();
 
-        UIauthInitController.UIauthGetMe();
+        UIauthGetMe();
         DAW.addCompositionsFromLocalStorage();
 
-        if (!hash.has("cmp")) {
-            new UIauthInitController.UIcompositionClickNewLocal();
+        if ( !hash.has( "cmp" ) ) {
+            UIcompositionClickNewLocal();
         } else {
-            DAW.addCompositionByURL(hash.get("cmp"))
-                .catch(e => {
-                    console.error(e);
+            DAW.addCompositionByURL( hash.get( "cmp" ) )
+                .catch( e => {
+                    console.error( e );
                     return DAW.addNewComposition();
-                })
-                .then(cmp => DAW.openComposition(cmp.id));
+                } )
+                .then( cmp => DAW.openComposition( cmp.id ) );
             location.hash = "";
         }
-        await require('./actions.js');
-        await require('./utils.js');
+
+        this.checkDom().then(function () {
+             require('./actions.js');
+             // require('./ui.js');
+             require('./utils.js');
+        })
+
     }
+
+
+    checkDom() {
+        return new Promise(function (resolve, reject) {
+            function step() {
+                if (document.querySelector("#gsuiPatternroll-template") != null &&
+                    document.querySelector("#gsuiTimeline-template") != null &&
+                    document.querySelector("#gsuiTracklist-template") != null
+                ) {
+                    resolve();
+                } else {
+                    window.requestAnimationFrame(step);
+                }
+            }
+
+            window.requestAnimationFrame(step);
+        });
+    }
+
 }

@@ -1,9 +1,9 @@
 "use strict";
 
 
-class UIpatternrollInitController {
+export class  UIpatternrollInitController {
 	
-static UIpatternrollInit() {
+  UIpatternrollInit() {
 	const grid = UIpatternroll;
 	const UIpatternroll = new gsuiPatternroll();
 

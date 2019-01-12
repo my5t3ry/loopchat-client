@@ -1,9 +1,9 @@
 "use strict";
 
 
-class UIpianorollIniController {
+export class  UIpianorollIniController {
 
-    static UIpianorollInit() {
+      UIpianorollInit() {
         const pia = UIpianoroll;
         const UIpianoroll = new gsuiPianoroll();
 
@@ -25,12 +25,12 @@ class UIpianorollIniController {
             gsuiPopup.prompt("Rename pattern", "", name, "Rename")
                 .then(name => DAW.namePattern(id, name));
         };
-        DOM.pianorollBlock.classList.add("show");
+        DOM.pianorollBlock.export.classList.add("show");
         DOM.keysGridWrap.append(pia.rootElement);
         pia.attached();
     }
 
-    static UIpianorollKeyboardEvent(status, e) {
+      UIpianorollKeyboardEvent(status, e) {
         const uiKeys = UIpianoroll.uiKeys,
             midi = uiKeys.getMidiKeyFromKeyboard(e);
 

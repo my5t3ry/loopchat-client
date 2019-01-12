@@ -1,13 +1,13 @@
 "use strict";
 const UICompositions = new Map();
 
-class UIcompositionsInitControlller {
+export class  UIcompositionsInitControlller {
 
 
-    static UIcompositionsInit() {
-        DOM.newCloudComposition.onclick = UICompositionsBuilder.UIcompositionClickNewCloud;
-        DOM.newLocalComposition.onclick = UICompositionsBuilder.UIcompositionClickNewLocal;
-        DOM.openLocalComposition.onclick = UIopenPopupShow;
+      UIcompositionsInit() {
+        DOM.newCloudComposition.onclick = this.UIcompositionClickNewCloud;
+        DOM.newLocalComposition.onclick = this.UIcompositionClickNewLocal;
+        DOM.openLocalComposition.onclick = IopenPopupShow;
         DOM.cloudCmps.onclick =
             DOM.localCmps.onclick = e => {
                 const cmp = e.target.closest(".cmp");
@@ -17,16 +17,16 @@ class UIcompositionsInitControlller {
 
                     switch (e.target.dataset.action) {
                         case "save":
-                            UICompositionsBuilder.UIcompositionClickSave();
+                            this.UIcompositionClickSave();
                             break;
                         case "open":
-                            UICompositionsBuilder.UIcompositionClickOpen(id);
+                            this.UIcompositionClickOpen(id);
                             break;
                         case "json":
-                            UICompositionsBuilder.UIcompositionClickJSONExport(id, e);
+                            this.UIcompositionClickJSONExport(id, e);
                             break;
                         case "delete":
-                            UICompositionsBuilder.UIcompositionClickDelete(id);
+                            this.UIcompositionClickDelete(id);
                             break;
                     }
                 }
@@ -34,18 +34,18 @@ class UIcompositionsInitControlller {
 
     }
 
-    static UIcompositionBeforeUnload() {
+      UIcompositionBeforeUnload() {
         if (DAW.compositionNeedSave()) {
             return "Data unsaved";
         }
     }
 
 
-    static UIcompositionOpened({id, synthOpened}) {
+      UIcompositionOpened({id, synthOpened}) {
         const html = UIcompositions.get(id),
             par = html.root.parentNode;
 
-        html.root.classList.add("cmp-loaded");
+        html.root.export.classList.add("cmp-loaded");
         par.prepend(html.root);
         par.scrollTop = 0;
         UIsynthsExpandSynth(synthOpened, true);
@@ -53,18 +53,18 @@ class UIcompositionsInitControlller {
     }
 
 
-    static UIcompositionLoading(cmp, loading) {
-        UIcompositions.get(cmp.id).root.classList.toggle("cmp-loading", loading);
+      UIcompositionLoading(cmp, loading) {
+        UIcompositions.get(cmp.id).root.export.classList.toggle("cmp-loading", loading);
     }
 
 
-    static UIcompositionSavedStatus(cmp, saved) {
-        UIcompositions.get(cmp.id).root.classList.toggle("cmp-notSaved", !saved);
+      UIcompositionSavedStatus(cmp, saved) {
+        UIcompositions.get(cmp.id).root.export.classList.toggle("cmp-notSaved", !saved);
         UItitle();
     }
 
 
-    static UIcompositionDeleted({id}) {
+      UIcompositionDeleted({id}) {
         const html = UIcompositions.get(id);
 
         if (html) {
@@ -74,7 +74,7 @@ class UIcompositionsInitControlller {
     }
 
 
-    static UIcompositionAdded(cmp, opt) {
+      UIcompositionAdded(cmp, opt) {
         const root = DOM.cmp.cloneNode(true),
             html = {
                 root,
@@ -94,8 +94,8 @@ class UIcompositionsInitControlller {
     }
 
 
-    static UIcompositionClosed(cmp) {
-        UIcompositions.get(cmp.id).root.classList.remove("cmp-loaded");
+      UIcompositionClosed(cmp) {
+        UIcompositions.get(cmp.id).root.export.classList.remove("cmp-loaded");
         UIpatternroll.empty();
         UIpatternroll.loop(false);
         UIpatternroll.setFontSize(32);
@@ -104,14 +104,14 @@ class UIcompositionsInitControlller {
         UIpianoroll.empty();
         UIpianoroll.loop(false);
         DOM.pianorollName.textContent = "";
-        DOM.pianorollBlock.classList.remove("show");
+        DOM.pianorollBlock.export.classList.remove("show");
         UIsynths.forEach(syn => syn.remove());
         UIsynths.clear();
         UIpatterns.clear();
     }
 
 
-    static UIcompositionClickNewLocal() {
+      UIcompositionClickNewLocal() {
         (!DAW.compositionNeedSave()
                 ? DAW.addNewComposition()
                 : gsuiPopup.confirm("Warning", "Are you sure you want to discard unsaved works")
@@ -121,7 +121,7 @@ class UIcompositionsInitControlller {
     }
 
 
-    static UIcompositionClickNewCloud() {
+      UIcompositionClickNewCloud() {
         if (!gsapiClient.user.id) {
             gsuiPopup.alert("Error",
                 "You can not create a new composition in the <b>cloud</b><br/>without being connected");
@@ -132,7 +132,7 @@ class UIcompositionsInitControlller {
     }
 
 
-    static UIcompositionClickDelete(id) {
+      UIcompositionClickDelete(id) {
         const cmp = DAW.get.composition(id);
 
         gsuiPopup.confirm("Warning",
@@ -153,7 +153,7 @@ class UIcompositionsInitControlller {
     }
 
 
-    static UIcompositionClickJSONExport(id, e) {
+      UIcompositionClickJSONExport(id, e) {
         const json = DAW.exportCompositionToJSON(id);
 
         e.target.href = json.url;
@@ -161,7 +161,7 @@ class UIcompositionsInitControlller {
     }
 
 
-    static UIcompositionClickOpen(id) {
+      UIcompositionClickOpen(id) {
         if (DAW.compositionNeedSave()) {
             gsuiPopup.confirm("Warning",
                 "Are you sure you want to discard unsaved works"
@@ -173,7 +173,7 @@ class UIcompositionsInitControlller {
     }
 
 
-    static UIcompositionClickSave() {
+      UIcompositionClickSave() {
         if (document.cookie.indexOf("cookieAccepted") > -1) {
             DAW.saveComposition();
         } else {

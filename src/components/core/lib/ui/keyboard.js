@@ -2,16 +2,16 @@
 
 const UIkeyPressed = new Map();
 
-class UIkeyboardUiControler {
+export class  UIkeyboardUiControler {
 
-    static UIkeyboardUp(e) {
+      UIkeyboardUp(e) {
         if (!UIkeyPressed[e.key]) {
-            UIkeyboardUiControler.UIpianorollKeyboardEvent(false, e);
+            this.UIpianorollKeyboardEvent(false, e);
         }
         delete UIkeyPressed[e.key];
     }
 
-    static UIkeyboardDown(e) {
+      UIkeyboardDown(e) {
         const key = e.key;
         let prevent;
 
@@ -25,7 +25,7 @@ class UIkeyboardUiControler {
             if (key === "o") {
                 UIopenPopupShow();
             } else if (key === "s") {
-                UIcompositionsInitControlller.UIcompositionClickSave();
+                this.UIcompositionClickSave();
             } else if (key === "z") {
                 DOM.undo.onclick();
             } else if (key === "Z") {
@@ -37,11 +37,13 @@ class UIkeyboardUiControler {
             }
             UIkeyPressed[key] = true;
         } else {
-            UIkeyboardUiControler.UIpianorollKeyboardEvent(true, e);
+            this.UIpianorollKeyboardEvent(true, e);
         }
         if (prevent) {
             e.preventDefault();
         }
     }
+
+}
 
 }

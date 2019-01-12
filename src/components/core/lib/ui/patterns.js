@@ -1,18 +1,18 @@
 "use strict";
 
 window.UIpatterns = new Map();
-class UIaddPatternControlleer {
+export class  UIaddPatternControlleer {
 	
-static UIaddPattern( id, obj ) {
+  UIaddPattern( id, obj ) {
 	const pat = DOM.pattern.cloneNode( true );
 
 	pat.dataset.id = id;
 	UIpatterns.set( id, pat );
-	UIaddPatternControlleer.UInamePattern( id, obj.name );
-	UIaddPatternControlleer.UIchangePatternSynth( id, obj.synth );
+	  this.UInamePattern( id, obj.name );
+	  this.UIchangePatternSynth( id, obj.synth );
 }
 
-static UInamePattern( id, name ) {
+  UInamePattern( id, name ) {
 	UIpatterns.get( id ).querySelector( ".pattern-name" ).textContent = name;
 	UIpatternroll.getBlocks().forEach( blc => {
 		if ( blc.dataset.pattern === id ) {
@@ -24,12 +24,12 @@ static UInamePattern( id, name ) {
 	}
 }
 
-static UIchangePatternSynth( patId, synthId ) {
+  UIchangePatternSynth( patId, synthId ) {
 	UIsynths.get( synthId ).querySelector( ".synth-patterns" )
 		.prepend( UIpatterns.get( patId ) );
 }
 
-static UIupdatePatternContent( id ) {
+  UIupdatePatternContent( id ) {
 	const get = DAW.get,
 		elPat = UIpatterns.get( id );
 
@@ -52,7 +52,7 @@ static UIupdatePatternContent( id ) {
 	} );
 }
 
-static UIpatternsInit() {
+  UIpatternsInit() {
 	const fnClick = new Map( [
 			[ undefined, id => DAW.openPattern( id ) ],
 			[ "remove", id => DAW.removePattern( id ) ],

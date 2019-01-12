@@ -23,7 +23,7 @@ export default class PatternRoll extends Component {
                     window.requestAnimationFrame(step);
                 }
             }
-
+                                               
             window.requestAnimationFrame(step);
         });
     }
@@ -39,7 +39,7 @@ export default class PatternRoll extends Component {
         return (
             <React.Fragment>
                 <Blockmanager/>
-                <Tracklist ref="tracklist"/>
+                <Tracklist/>
                 {this.props.children}
                 <div id="gsuiPatternroll-template" className="gsuiBlocksManager gsuiPatternroll gsuiPanels-x" tabIndex="-1">
                     <div className="gsuiBlocksManager-sidePanel">

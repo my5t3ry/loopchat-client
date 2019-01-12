@@ -9,11 +9,6 @@ export default class Blockmanager extends Component {
         this.p
     }
 
-    componentDidMount() {
-        this.gsuiBlockmanager = new gsuiBlockmManager(document.querySelector("#gsuiPatternroll-template"));
-    }
-
-
     render() {
         return (
             <div className="blockmanager">

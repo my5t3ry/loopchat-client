@@ -1,32 +1,32 @@
 "use strict";
 
 
-class UIcontrolsCurrentTimeController {
+export class UIcontrolsCurrentTimeController {
 
-    static UIcontrolsCurrentTime(beat, focused) {
+    UIcontrolsCurrentTime(beat, focused) {
         (focused === "composition" ? UIpatternroll :
-            UIcontrolsCurrentTimeController.UIcontrolsFocusOn());
+            this.UIcontrolsFocusOn());
     }
 
-    static UIcontrolsFocusOn(subject, b) {
+    UIcontrolsFocusOn(subject, b) {
         if (b) {
             const onCmp = subject === "composition";
 
-            DOM.togglePlay.classList.toggle("after", !onCmp);
-            DOM.mainGridWrap.classList.toggle("focus", onCmp);
-            DOM.keysGridWrap.classList.toggle("focus", !onCmp);
+            DOM.togglePlay.export.classList.toggle("after", !onCmp);
+            DOM.mainGridWrap.export.classList.toggle("focus", onCmp);
+            DOM.keysGridWrap.export.classList.toggle("focus", !onCmp);
             (onCmp ? UIpatternroll : UIpianoroll).rootElement.focus();
         }
     }
 
-    static UIcontrolsClockUpdate(a, b, c) {
+    UIcontrolsClockUpdate(a, b, c) {
         DOM.clockMin.textContent = a;
         DOM.clockSec.textContent = b;
         DOM.clockMs.textContent = c;
     }
 
-    static UIcontrolsInit() {
-        const slider = new gsstatic
+    UIcontrolsInit() {
+        const slider = new gs
         UISlider();
 
         DOM.play.onclick = () => (DAW.togglePlay(), false);

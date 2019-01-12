@@ -1,7 +1,7 @@
 "use strict";
 
 // the duration shoulb be took from the pattern
-class uiKeysToRectsController {
+export class  uiKeysToRectsController {
 
     sttic
 

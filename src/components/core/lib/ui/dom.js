@@ -1,7 +1,7 @@
 "use strict";
 
 
-class UIdomInitController {
+export class  UIdomInitController {
 
 
     constructor() {

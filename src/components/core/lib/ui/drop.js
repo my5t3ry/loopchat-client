@@ -6,10 +6,10 @@ const UIdropCmpExt = {
     json: true,
 };
 
-class UIdropController {
+export class  UIdropController {
 
 
-    static UIdrop(e) {
+      UIdrop(e) {
         const files = Array.from(e.dataTransfer.files),
             cmpFile = files.find(f => (
                 f.name.split(".").pop().toLowerCase() in UIdropCmpExt

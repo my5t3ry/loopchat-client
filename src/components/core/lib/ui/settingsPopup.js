@@ -1,13 +1,13 @@
 "use strict";
 
-class UIsettingsPopupInit {
+export class  UIsettingsPopupInit {
 	
-static UIsettingsPopupInit() {
+  UIsettingsPopupInit() {
 	DOM.settings.onclick = UIsettingsPopupInit.UIsettingsPopupShow;
 	DOM.settingsBPMTap.onclick = UUIsettingsPopupInit.IsettingsPopupBPMTap;
 }
 
-static UIsettingsPopupShow() {
+  UIsettingsPopupShow() {
 	const cmp = DAW.get.composition(),
 		bpmTap = DOM.settingsBPMTap;
 
@@ -29,7 +29,7 @@ static UIsettingsPopupShow() {
 	return false;
 }
 
-static UIsettingsPopupSubmit() {
+  UIsettingsPopupSubmit() {
 	const cmp = DAW.get.composition(),
 		envChange = {},
 		cmpChange = {},
@@ -50,7 +50,7 @@ static UIsettingsPopupSubmit() {
 	if ( !DAWCore.objectIsEmpty( cmpChange ) ) { DAW.compositionChange( cmpChange ); }
 }
 
-static UIsettingsPopupBPMTap() {
+  UIsettingsPopupBPMTap() {
 	const time = Date.now(),
 		bpmTap = DOM.settingsBPMTap;
 

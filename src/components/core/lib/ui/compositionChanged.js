@@ -1,8 +1,8 @@
 "use strict";
 
-class UICompositionChangedControler {
+export class  UICompositionChangedControler {
 
-    static UIcompositionChanged(obj, prevObj) {
+      UIcompositionChanged(obj, prevObj) {
         const cmp = DAW.get.composition();
 
         console.log("UIcompositionChanged", obj);
@@ -99,8 +99,8 @@ class UICompositionChangedControler {
                 const el = UIsynths.get(synthOpened),
                     elPrev = UIsynths.get(prevObj.synthOpened);
 
-                el && el.classList.add("synth-selected");
-                elPrev && elPrev.classList.remove("synth-selected");
+                el && el.export.classList.add("synth-selected");
+                elPrev && elPrev.export.classList.remove("synth-selected");
                 UIsynthOpen(synthOpened);
             }],
             ["patternOpened", function ({patternOpened}, prevObj) {
@@ -110,9 +110,9 @@ class UICompositionChangedControler {
 
                 UIpianoroll.empty();
                 DOM.pianorollName.textContent = pat ? pat.name : "";
-                DOM.pianorollBlock.classList.toggle("show", !pat);
+                DOM.pianorollBlock.export.classList.toggle("show", !pat);
                 if (pat) {
-                    el.classList.add("selected");
+                    el.export.classList.add("selected");
                     DAWCore.objectDeepAssign(UIpianoroll.data, DAW.get.keys(pat.keys));
                     UIpianoroll.resetKey();
                     UIpianoroll.scrollToKeys();
@@ -120,10 +120,15 @@ class UICompositionChangedControler {
                     UIpianoroll.setPxPerBeat(90);
                 }
                 if (elPrev) {
-                    elPrev.classList.remove("selected");
+                    elPrev.export.classList.remove("selected");
                 }
             }],
         ]);
+
+    }
+
+
+}
 
     }
 

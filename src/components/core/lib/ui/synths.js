@@ -2,26 +2,26 @@
 
 const UIsynths = new Map();
 
-class UIsynthsAddSynthControler {
+export class  UIsynthsAddSynthControler {
 
-    static UIsynthsAddSynth(id, obj) {
+      UIsynthsAddSynth(id, obj) {
         const syn = DOM.synth.cloneNode(true);
 
         syn.dataset.id = id;
         UIsynths.set(id, syn);
-       UIsynthsAddSynthControler.UIsynthsNameSynth(id, obj.name);
+          this.UIsynthsNameSynth(id, obj.name);
         DOM.patterns.prepend(syn);
     }
 
-    static UIsynthsExpandSynth(id, b) {
-        UIsynths.get(id).classList.toggle("synth-show", b);
+      UIsynthsExpandSynth(id, b) {
+        UIsynths.get(id).export.classList.toggle("synth-show", b);
     }
 
-    static UIsynthsNameSynth(id, name) {
+      UIsynthsNameSynth(id, name) {
         UIsynths.get(id).querySelector(".synth-name").textContent = name;
     }
 
-    static UIsynthsInit() {
+      UIsynthsInit() {
         const fnClick = new Map([
             [undefined, id => {
                 DAW.openSynth(id);
@@ -38,7 +38,7 @@ class UIsynthsAddSynthControler {
             }],
             ["newPattern", id => {
                 DAW.newPattern(id);
-                UIsynthsAddSynthControler.UIsynthsExpandSynth(id, true);
+                this.UIsynthsExpandSynth(id, true);
             }],
         ]);
 
@@ -55,8 +55,8 @@ class UIsynthsAddSynthControler {
             }
         };
         DOM.patterns.addEventListener("dblclick", e => {
-            if (e.target.classList.contains("synth-name")) {
-                UIsynthsAddSynthControler.UIsynthsExpandSynth(e.target.closest(".synth").dataset.id);
+            if (e.target.export.classList.contains("synth-name")) {
+                this.UIsynthsExpandSynth(e.target.closest(".synth").dataset.id);
             }
         });
         DOM.patterns.addEventListener("click", e => {

@@ -1,10 +1,10 @@
 "use strict";
 
 
-class UIsynthOpenController {
+export class  UIsynthOpenController {
 
 
-    static UIsynthOpen(id) {
+      UIsynthOpen(id) {
         const  UIsynth = new gsuiSynthesizer();
 
         UIsynth.empty();
@@ -14,18 +14,18 @@ class UIsynthOpenController {
             const syn = DAW.get.synth(id);
 
             DOM.synthName.textContent = syn.name;
-            UIsynthOpenController.UIsynthChange(syn);
+            this.UIsynthChange(syn);
         }
     }
 
-    static UIsynthChange(obj) {
+      UIsynthChange(obj) {
         if ("name" in obj) {
             DOM.synthName.textContent = obj.name;
         }
         UIsynth.change(obj);
     }
 
-    static UIsynthInit() {
+      UIsynthInit() {
         UIsynth.oninput = (id, attr, val) => {
             DAW.liveChangeSynth(DAW.get.synthOpened(), {
                 oscillators: {[id]: {[attr]: val}}

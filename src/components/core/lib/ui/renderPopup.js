@@ -1,13 +1,13 @@
 "use strict";
 
-class UIrenderPopupInitController {
+export class  UIrenderPopupInitController {
 
 
-    static UIrenderPopupInit() {
-        DOM.renderBtn.onclick = UIrenderPopupInitController.UIrenderPopupRender;
+      UIrenderPopupInit() {
+        DOM.renderBtn.onclick = this.UIrenderPopupRender;
     }
 
-    static UIrenderPopupShow() {
+      UIrenderPopupShow() {
         DOM.renderProgress.value = 0;
         DOM.renderBtn.dataset.status = "0";
         DOM.renderBtn.href = "";
@@ -19,7 +19,7 @@ class UIrenderPopupInitController {
         return false;
     }
 
-    static UIrenderPopupRender() {
+      UIrenderPopupRender() {
         const a = DOM.renderBtn,
             d = a.dataset;
 
