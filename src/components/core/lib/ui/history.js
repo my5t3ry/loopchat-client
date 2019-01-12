@@ -17,7 +17,7 @@ export class  UIhistoryInitCControler {
         const div = tpl.cloneNode(true);
 
         act._html = div;
-        div.children[0].export class Name += " ico-" + act.icon; // 1
+         div.children[ 0 ].className += " ico-" + act.icon; // 1
         div.children[1].textContent = act.desc;
         div.onclick = () => DAW.history.goToAction(act);
         DOM.history.append(div);

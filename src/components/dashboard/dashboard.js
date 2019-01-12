@@ -16,8 +16,12 @@ import {
   EDITOR_WORKSPACE,
   HOME_WORKSPACE,
 } from '../../types/workspace'
-import PatternRoll from "../gs-lib/gsuiPatternRoll/PatternRoll";
+import PatternRoll from "../gs-lib/gsuiPatteroll/PatternRoll";
+import Gstemplates from "../gs-lib/gstemplates";
 
+
+
+// we need this for this component to work with AppBar
 
 const actions = {
   createTimeline,
@@ -35,7 +39,7 @@ export class Dashboard extends Component {
   static propTypes = {
     session: object,
   }
-  
+
   constructor(props) {
     super(props)
   }
@@ -43,11 +47,11 @@ export class Dashboard extends Component {
   renderTimelineEditor() {
     const {visibleTimelines} = this.props
     const ids = visibleTimelines
-    
+
     if (ids.length === 0) return
 
     return (
-      <Editor snippetId={ids[0]}/>
+        <Editor snippetId={ids[0]}/>
     )
   }
 
@@ -55,31 +59,31 @@ export class Dashboard extends Component {
     const {openInstruments} = this.props
 
     console.log(openInstruments)
-    
+
     if (keys(openInstruments).length === 0) return
 
     return (
-      <Workshop instrumentId={openInstruments[0]}/>
+        <Workshop instrumentId={openInstruments[0]}/>
     )
   }
 
   renderCurrentWorkspace() {
     const {activeWorkspace} = this.props
-    
+
     switch(activeWorkspace) {
-    case INSTRUMENT_WORKSPACE:
-      return this.renderInstrumentWorkshop()
-    case EDITOR_WORKSPACE:
-      return this.renderTimelineEditor()
-    default:
-      return
+      case INSTRUMENT_WORKSPACE:
+        return this.renderInstrumentWorkshop()
+      case EDITOR_WORKSPACE:
+        return this.renderTimelineEditor()
+      default:
+        return
     }
   }
   componentDidMount(){
-        this.bootloader = new Bootloader();
-        this.bootloader.bootstrap();
+    this.bootloader = new Bootloader();
+    this.bootloader.bootstrap();
   }
-  
+
   render() {
     const iconStyles = {
       width: 40,
@@ -88,11 +92,10 @@ export class Dashboard extends Component {
     }
 
     return(
-      <div className='dashboard'>
-        <ProjectBar/>
-        <PatternRoll/>
-        {this.renderCurrentWorkspace()}
-      </div>
+        <div className='dashboard'>
+          <Gstemplates/>
+          {this.renderCurrentWorkspace()}
+        </div>
     )
   }
 }

@@ -129,8 +129,3 @@ export class  UICompositionChangedControler {
 
 
 }
-
-    }
-
-
-}

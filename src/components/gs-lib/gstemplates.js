@@ -12,7 +12,6 @@ export default class Gstemplates extends Component {
           </div>
           <div className="gsuiPanels-y" id="pan-rightside">
             <div id="pan-maingrid"></div>
-            <!-- <div id="pan-mixer"></div> -->
             <div className="gsuiPanels-x">
               <div className="pan-synth-pianoroll no-select" id="pan-synth"></div>
               <div className="pan-synth-pianoroll" id="pan-pianoroll"></div>
