@@ -10,12 +10,13 @@ import {ProjectBar} from './projectBar'
 import {createTimeline} from '../../redux/actions/timelines/timelines'
 import {getActiveWorkspace} from '../../redux/selectors/workspaces'
 import {getOpenInstruments} from '../../redux/selectors/instruments'
+import '../core/core';
 import {
   INSTRUMENT_WORKSPACE,
   EDITOR_WORKSPACE,
   HOME_WORKSPACE,
 } from '../../types/workspace'
-import PatternRoll from "./patternroll/PatternRoll";
+import PatternRoll from "../gs-lib/gsuiPatternRoll/PatternRoll";
 
 
 
@@ -76,6 +77,10 @@ export class Dashboard extends Component {
     default:
       return
     }
+  }
+  componentDidMount(){
+        this.bootloader = new bootloader();
+        this.bootloader.bootstrap();
   }
   
   render() {

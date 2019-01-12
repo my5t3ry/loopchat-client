@@ -1,7 +1,7 @@
 "use strict";
 import './gsuiPatternroll.css';
 import gsuiBlocksManager from "../../gs-lib/gsuiBlocksManager/gsuiBlocksManager";
-import gsuiTracklist from "./gsuiTracklist";
+import gsuiTracklist from "../gsuiTracklist/gsuiTracklist";
 
 class gsuiPatternroll extends gsuiBlocksManager {
 
