@@ -1,12 +1,20 @@
 import DAWCore, {Composition, LocalStorage, Pianoroll} from '../core.js'
-import './ui/dom'
+import {UIdomInitController} from './ui/dom' ;
+
 export class Bootloader {
 
     constructor() {
     }
 
+
     async bootstrap() {
-        const DOM =  UIdomInit();
+        this.checkDom().then(function () {
+
+        })
+    }
+
+    async boot() {
+        const DOM = new UIdomInitController().UIdomInit();
         window.DOM = DOM;
         DAWCore.Compositon = new Composition();
         DAWCore.History = new History();
@@ -20,15 +28,21 @@ export class Bootloader {
                 .split("&")
                 .map(kv => kv.split("="))
             );
+     
+        window.DAW = DAW;
+        window.VERSION = "0.19.0";
+        DAW.initPianoroll();
+        await require('./actions.js');
+        await require('./ui.js');
+        await require('./utils.js');
+        this.initBindings(DAW, DOM, hash);
+        this.initUi();
+    }
+
+    initBindings(DAW, DOM, hash) {
         gswaPeriodicWaves.forEach((w, name) => (
             thisgsuiPeriodicWave.addWave(name, w.real, w.imag)
         ));
-
-        window.DAW = DAW;
-        window.VERSION = "0.19.0";
-
-        DAW.initPianoroll();
-
         window.onkeyup = UIkeyboardUp;
         window.onkeydown = UIkeyboardDown;
         window.onbeforeunload = UIcompositionBeforeUnload;
@@ -45,33 +59,43 @@ export class Bootloader {
         DAW.cb.compositionLoading = UIcompositionLoading;
         DAW.cb.compositionSavedStatus = UIcompositionSavedStatus;
         DAW.cb.compositionSavingPromise = UIauthSaveComposition;
-        DAW.cb.analyserFilled = data => UImasterAnalyser.draw( data );
+        DAW.cb.analyserFilled = data => UImasterAnalyser.draw(data);
         DAW.cb.pause =
-            DAW.cb.stop = () => DOM.play.classList.remove( "ico-pause" );
-        DAW.cb.play = () => DOM.play.classList.add( "ico-pause" );
+            DAW.cb.stop = () => DOM.play.classList.remove("ico-pause");
+        DAW.cb.play = () => DOM.play.classList.add("ico-pause");
 
         window.onresize();
 
         UIauthGetMe();
         DAW.addCompositionsFromLocalStorage();
 
-        if ( !hash.has( "cmp" ) ) {
+        if (!hash.has("cmp")) {
             UIcompositionClickNewLocal();
         } else {
-            DAW.addCompositionByURL( hash.get( "cmp" ) )
-                .catch( e => {
-                    console.error( e );
+            DAW.addCompositionByURL(hash.get("cmp"))
+                .catch(e => {
+                    console.error(e);
                     return DAW.addNewComposition();
-                } )
-                .then( cmp => DAW.openComposition( cmp.id ) );
+                })
+                .then(cmp => DAW.openComposition(cmp.id));
             location.hash = "";
         }
+    }
 
-        this.checkDom().then(function () {
-             require('./actions.js');
-             // require('./ui.js');
-             require('./utils.js');
-        })
+    initUi() {
+        UIdomInit();
+        UIauthInit();
+        UIcookieInit();
+        UIhistoryInit();
+        UIpatternsInit();
+        UIcontrolsInit();
+        UIpianorollInit();
+        UIpatternrollInit();
+        UIrenderPopupInit();
+        UIcompositionsInit();
+        UIsettingsPopupInit();
+        UImasterAnalyserInit();
+        UIshortcutsPopupInit();
 
     }
 

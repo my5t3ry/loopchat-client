@@ -1,14 +1,14 @@
 "use strict";
 
 
+import gsuiPanels from "../../../gs-lib/gsuiPanels/gsuiPanels";
+
 export class  UIdomInitController {
-
-
     constructor() {
     }
 
-    static UIdomInit() {
-        this.uipanels = new gsuiPanels(document.querySelector("#app"));
+    UIdomInit() {
+        this.uipanels = new gsuiPanels(document.querySelector("#root"));
 
         let DOM;
         this.uipanels.attached();
