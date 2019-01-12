@@ -1,13 +1,13 @@
-:root {
-	--gsuiBlocksManager-grid-bg: dodgerblue;
-	--gsuiBlocksManager-borderColor: yellow;
-	--gsuiBlocksManager-side-bgColor: indianred;
-	--gsuiBlocksManager-timeline-height: 32px;
-	--gsuiBlocksManager-selection-bgColor: rgba( 255, 255, 0, .5 );
-	--gsuiBlocksManager-selection-borderColor: yellow;
-	--gsuiBlocksManager-blockColor: yellow;
-	--gsuiBlocksManager-blockSelectedColor: blue;
-}
+/*:root {*/
+	/*--gsuiBlocksManager-grid-bg: dodgerblue;*/
+	/*--gsuiBlocksManager-borderColor: yellow;*/
+	/*--gsuiBlocksManager-side-bgColor: indianred;*/
+	/*--gsuiBlocksManager-timeline-height: 32px;*/
+	/*--gsuiBlocksManager-selection-bgColor: rgba( 255, 255, 0, .5 );*/
+	/*--gsuiBlocksManager-selection-borderColor: yellow;*/
+	/*--gsuiBlocksManager-blockColor: yellow;*/
+	/*--gsuiBlocksManager-blockSelectedColor: blue;*/
+/*}*/
 
 .gsuiBlocksManager-sidePanel {
 	position: relative;
