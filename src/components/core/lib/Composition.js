@@ -1,8 +1,7 @@
 "use strict";
-import  DAWCore from '../core'
+import gswaScheduler from '../gs-wa/gswaScheduler/gswaScheduler'
 
-
-class Composition {
+export default class Composition {
 
     constructor(daw) {
         const sch = new gswaScheduler();
@@ -30,7 +29,7 @@ class Composition {
             this.daw._call("compositionChanged", obj, prevObj);
             return obj;
         };
-        
+
         this.prototype.fn = new Map([
             ["bpm", function ({bpm}) {
                 this._sched.setBPM(bpm);

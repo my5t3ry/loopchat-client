@@ -1,8 +1,7 @@
 "use strict";
 
-class gsuiPanels {
+export default class gsuiPanels {
 	constructor( root ) {
-
 		document.addEventListener( "mousemove", e => {
 			gsuiPanels._focused && gsuiPanels._focused._onmousemove( e );
 		} );

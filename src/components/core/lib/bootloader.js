@@ -1,4 +1,5 @@
 import {UIdomInitController} from './ui/dom' ;
+import DAWCoreBuilder from "./DAWCoreBuilder";
 
 export class Bootloader {
 
@@ -14,13 +15,7 @@ export class Bootloader {
     async boot() {
         const DOM = new UIdomInitController().UIdomInit();
         window.DOM = DOM;
-        DAWCore.Compositon = new Composition();
-        DAWCore.History = new History();
-        DAWCore.Pianoroll = new Pianoroll();
-        DAWCore.LocalStorage = new LocalStorage();
-        DAWCore.json = {};
-        DAWCore.prototype = {};
-        const DAW = new DAWCore(),
+        const DAW = new DAWCoreBuilder(),
             hash = new Map(location.hash
                 .substr(1)
                 .split("&")
@@ -38,7 +33,7 @@ export class Bootloader {
     }
 
     initBindings(DAW, DOM, hash) {
-        gswaPeriodicWaves.forEach((w, name) => (                                                               
+        gswaPeriodicWaves.forEach((w, name) => (
             thisgsuiPeriodicWave.addWave(name, w.real, w.imag)
         ));
         window.onkeyup = UIkeyboardUp;

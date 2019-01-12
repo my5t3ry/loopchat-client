@@ -1,6 +1,6 @@
 "use strict";
 
-class gsuiBlocksManager {
+export default class gsuiBlocksManager {
 	constructor( root ) {
 
 		document.addEventListener( "mousemove", e => {

@@ -1,12 +1,13 @@
 "use strict";
-import  DAWCore from '../core'
- class Destination{
+
+export default  class History {
     constructor(daw) {
         this.daw = daw;
         this._stack = [];
         this._stackInd = 0;
         this._stackCue = -1;
         "use strict";
+        this.prototype ={};
 
         this.prototype.nameAction = function (act) {
             const cmp = this.daw.get.composition(),

@@ -1,5 +1,6 @@
 "use strict";
-import {gsuiBlocksManager} from "../gs-lib";
+
+import gsuiBlocksManager from "./gsuiBlocksManager";
 
 class gsuiPianoroll extends gsuiBlocksManager {
     constructor() {

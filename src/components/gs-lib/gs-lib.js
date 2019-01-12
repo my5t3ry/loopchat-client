@@ -1,5 +1,4 @@
 export { default as gsuiBeatlines } from "./js/gsuiBeatlines.js";
-export { default as gsuiBlocksManager } from "./js/gsuiBlocksManager.js";
 export { default as gsuiDotline } from "./js/gsuiDotline.js";
 export { default as gsuiDragline } from "./js/gsuiDragline.js";
 export { default as gsuiEQ } from "./js/gsuiEQ.js";
@@ -7,7 +6,6 @@ export { default as gsuiKeys } from "./js/gsuiKeys.js";
 export { default as gsuiMixer } from "./js/gsuiMixer.js";
 export { default as gsuiOscillator } from "./js/gsuiOscillator.js";
 export { default as gsuiOscilloscope } from "./js/gsuiOscilloscope.js";
-export { default as gsuiPanels } from "./js/gsuiPanels.js";
 export { default as gsuiPatternroll } from "./js/gsuiPatternroll.js";
 export { default as gsuiPeriodicWave } from "./js/gsuiPeriodicWave.js";
 export { default as gsuiPianoroll } from "./js/gsuiPianoroll.js";

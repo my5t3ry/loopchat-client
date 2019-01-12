@@ -1,10 +1,11 @@
-"use strict";
-import  DAWCore from '../core'
-class LocalStorage {
+ "use strict";
+ import Composition from "../lib/Composition";
+
+export default class LocalStorage {
 	put( id, cmp ) {
 		const cpy = DAWCore.objectDeepCopy( cmp );
 
-		DAWCore.Composition.epure( cpy );
+		Composition.epure( cpy );
 		localStorage.setItem( id, JSON.stringify( cpy ) );
 	}
 	delete( id ) {

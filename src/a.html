@@ -4601,7 +4601,7 @@ DAWCore.json = {}, Object.assign(DAWCore.prototype, {
     }), Object.values(e.keys).forEach(e => {
         Object.values(e).forEach(e => {
             if (e.pan = +DAWCore.castToNumber(-1, 1, 0, e.pan).toFixed(2), e.gain = +DAWCore.castToNumber(0, 1, .8, e.gain).toFixed(2), e.selected = !!e.selected, null == e.prev && (e.prev = null), null == e.next && (e.next = null), delete e.durationEdited, "string" == typeof e.key) {
-                if (!window.gsuiKeys) return console.warn("DAWCore.Composition.format: gsuiKeys is needed to convert an old midi notation"), !1;
+                if (!window.gsuiKeys) return console.warn("DAWCoreBuilder.Composition.format: gsuiKeys is needed to convert an old midi notation"), !1;
                 e.key = window.gsuiKeys.keyStrToMidi(e.key)
             }
         })

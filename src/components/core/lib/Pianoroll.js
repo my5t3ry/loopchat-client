@@ -1,7 +1,6 @@
 "use strict";
-import  DAWCore from '../core'
 
-class Pianoroll {
+export default class Pianoroll {
 	constructor( daw ) {
 		const waSched = new gswaScheduler();
 

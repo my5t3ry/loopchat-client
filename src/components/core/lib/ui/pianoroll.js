@@ -1,9 +1,9 @@
 "use strict";
+import gsuiPianoroll from '../../../gs-lib/js/gsuiPianoroll'
 
+export class UIpianorollIniController {
 
-export class  UIpianorollIniController {
-
-      UIpianorollInit() {
+    UIpianorollInit() {
         const pia = UIpianoroll;
         const UIpianoroll = new gsuiPianoroll();
 
@@ -30,7 +30,7 @@ export class  UIpianorollIniController {
         pia.attached();
     }
 
-      UIpianorollKeyboardEvent(status, e) {
+    UIpianorollKeyboardEvent(status, e) {
         const uiKeys = UIpianoroll.uiKeys,
             midi = uiKeys.getMidiKeyFromKeyboard(e);
 

@@ -1,6 +1,6 @@
 "use strict";
 
-class gswaScheduler {
+export default class gswaScheduler {
 	constructor() {
 		this.ondatastart =
 		this.ondatastop =

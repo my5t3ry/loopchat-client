@@ -1,7 +1,6 @@
 "use strict";
-import  DAWCore from '../core'
 
-class Destination{
+export default class Destination{
 	constructor( daw ) {
 		this.daw = daw;
 		this._gain = this.daw.env.def_appGain;

@@ -1,6 +1,6 @@
 "use strict";
 
-import {gsuiPanels} from "../../../gs-lib/gs-lib";
+import gsuiPanels from '../../../gs-lib/js/gsuiPanels'
 
 export class UIdomInitController {
     constructor() {
@@ -9,7 +9,8 @@ export class UIdomInitController {
     UIdomInit() {
         this.uipanels = new gsuiPanels(document.querySelector("#root"));
 
-        let DOM;
+        const DOM ={};
+        window.DOM = DOM;
         this.uipanels.attached();
         document.querySelectorAll("div[data-panel]").forEach(pan => {
 

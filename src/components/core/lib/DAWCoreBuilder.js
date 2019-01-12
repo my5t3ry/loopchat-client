@@ -1,8 +1,19 @@
 "use strict";
 
-class DAWCore {
+import Composition from "../lib/Composition";
+import LocalStorage from "../lib/LocalStorage";
+import Pianoroll from "../lib/Pianoroll";
+import Destionation from "../lib/Destination";
+import History from "../lib/History";
+
+export default class DAWCoreBuilder {
     constructor() {
         this.cb = {};
+        DAWCoreBuilder.Compositon = Composition;
+        DAWCoreBuilder.History = History;
+        DAWCoreBuilder.Pianoroll = Pianoroll;
+        DAWCoreBuilder.LocalStorage = LocalStorage;
+        this.json = {};
         this.env = Object.seal({
             def_bpm: 120,
             def_appGain: .5,
@@ -14,51 +25,6 @@ class DAWCore {
             sampleRate: 44100,
             clockSteps: false,
         });
-        this.prototype = {
-            _getInit() {
-                const listnames = ["synth", "pattern", "block", "track", "keys"],
-                    cmp = () => this.composition.cmp,
-                    getList = list => cmp() && cmp()[list],
-                    getObject = (list, id) => cmp() && cmp()[list][id],
-                    obj = listnames.reduce((obj, w) => {
-                        if (w.endsWith("s")) {
-                            obj[w] = this._getListOrObj.bind(this, w);
-                        } else {
-                            const list = w + "s";
-
-                            obj[w] = getObject.bind(this, list);
-                            obj[list] = getList.bind(this, list);
-                        }
-                        return obj;
-                    }, {});
-
-                this.get = obj;
-                this._getList = getList;
-                obj.composition = id => (
-                    !id || id === obj.id()
-                        ? cmp()
-                        : this.compositions.get(id)
-                );
-                obj.id = () => cmp() && cmp().id;
-                obj.bpm = () => cmp() && cmp().bpm;
-                obj.name = () => cmp() && cmp().name;
-                obj.loopA = () => cmp() && cmp().loopA;
-                obj.loopB = () => cmp() && cmp().loopB;
-                obj.duration = () => cmp() && cmp().duration;
-                obj.synthOpened = () => cmp() && cmp().synthOpened;
-                obj.patternOpened = () => cmp() && cmp().patternOpened;
-                obj.beatsPerMeasure = () => cmp() && cmp().beatsPerMeasure;
-                obj.stepsPerBeat = () => cmp() && cmp().stepsPerBeat;
-                obj.ctx = () => this.ctx;
-                obj.currentTime = () => this.composition.currentTime;
-                obj.destination = () => this.destination.getDestination();
-            },
-            _getListOrObj(listname, id) {
-                const list = this._getList(listname);
-
-                return list && arguments.length === 2 ? list[id] : list;
-            },
-        }
 
         this.json.composition = (env, id) => {
             const tracks = {};
@@ -88,7 +54,7 @@ class DAWCore {
                 },
                 tracks,
                 blocks: {},
-                synths: {"0": DAWCore.json.synth("synth")},
+                synths: {"0": DAWCoreBuilder.json.synth("synth")},
                 keys: {"0": {}},
             };
         };
@@ -109,9 +75,9 @@ class DAWCore {
         this.compositionFocused = true;
         this.compositionsOptions = new Map();
         this.compositions = new Map();
-        this.composition = new DAWCore.Composition(this);
-        this.destination = new DAWCore.Destination(this);
-        this.history = new DAWCore.History(this);
+        this.composition = new Composition(this);
+        this.destination = new Destionation(this);
+        this.history = new History(this);
         this._loop = this._loop.bind(this);
         this._getInit();
         this.setCtx(new AudioContext());
@@ -124,8 +90,53 @@ class DAWCore {
     }
 
     initPianoroll() {
-        this.pianoroll = new DAWCore.Pianoroll(this);
+        this.pianoroll = new DAWCoreBuilder.Pianoroll(this);
     }
+
+    _getInit() {
+        const listnames = ["synth", "pattern", "block", "track", "keys"],
+            cmp = () => this.composition.cmp,
+            getList = list => cmp() && cmp()[list],
+            getObject = (list, id) => cmp() && cmp()[list][id],
+            obj = listnames.reduce((obj, w) => {
+                if (w.endsWith("s")) {
+                    obj[w] = this._getListOrObj.bind(this, w);
+                } else {
+                    const list = w + "s";
+
+                    obj[w] = getObject.bind(this, list);
+                    obj[list] = getList.bind(this, list);
+                }
+                return obj;
+            }, {});
+
+        this.get = obj;
+        this._getList = getList;
+        obj.composition = id => (
+            !id || id === obj.id()
+                ? cmp()
+                : this.compositions.get(id)
+        );
+        obj.id = () => cmp() && cmp().id;
+        obj.bpm = () => cmp() && cmp().bpm;
+        obj.name = () => cmp() && cmp().name;
+        obj.loopA = () => cmp() && cmp().loopA;
+        obj.loopB = () => cmp() && cmp().loopB;
+        obj.duration = () => cmp() && cmp().duration;
+        obj.synthOpened = () => cmp() && cmp().synthOpened;
+        obj.patternOpened = () => cmp() && cmp().patternOpened;
+        obj.beatsPerMeasure = () => cmp() && cmp().beatsPerMeasure;
+        obj.stepsPerBeat = () => cmp() && cmp().stepsPerBeat;
+        obj.ctx = () => this.ctx;
+        obj.currentTime = () => this.composition.currentTime;
+        obj.destination = () => this.destination.getDestination();
+    }
+
+    _getListOrObj(listname, id) {
+        const list = this._getList(listname);
+
+        return list && arguments.length === 2 ? list[id] : list;
+    }a
 
     envChange(obj) {
         Object.assign(this.env, obj);
@@ -209,7 +220,7 @@ class DAWCore {
     }
 
     _clockUpdate() {
-        const t = DAWCore.time,
+        const t = DAWCoreBuilder.time,
             beat = this._focusedObj().getCurrentTime();
 
         if (this.env.clockSteps) {
@@ -266,7 +277,7 @@ class DAWCore {
     }
 
     _createUniqueName(collection, name) {
-        return DAWCore.uniqueName(name, Object.values(
+        return DAWCoreBuilder.uniqueName(name, Object.values(
             this.get[collection]()).map(obj => obj.name));
     }
 }
