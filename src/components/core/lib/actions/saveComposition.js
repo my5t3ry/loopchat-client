@@ -1,6 +1,8 @@
 "use strict";
 
-DAWCore.prototype.saveComposition = function() {
+import DAWCoreBuilder from "../DAWCoreBuilder";
+
+DAWCoreBuilder.prototype.saveComposition = function() {
 	const actSave = this.composition._actionSavedOn;
 
 	if ( this.composition.save() ) {
@@ -10,7 +12,7 @@ DAWCore.prototype.saveComposition = function() {
 
 		this.compositions.set( id, cmp );
 		if ( opt.localSaving ) {
-			DAWCore.LocalStorage.put( id, cmp );
+			DAWCoreBuilder.LocalStorage.put( id, cmp );
 			this._call( "compositionSavedStatus", cmp, true );
 		} else {
 			this.composition._saved = false;

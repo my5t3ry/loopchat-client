@@ -1,6 +1,8 @@
 "use strict";
 
-DAWCore.prototype.exportCompositionToWAV = function() {
+import DAWCoreBuilder from "../DAWCoreBuilder";
+
+DAWCoreBuilder.prototype.exportCompositionToWAV = function() {
 	const ctx = this.ctx,
 		smpRate = this.env.sampleRate,
 		dur = Math.ceil( this.get.duration() * 60 / this.get.bpm() ) || 1,

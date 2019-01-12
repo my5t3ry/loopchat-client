@@ -1,6 +1,8 @@
 "use strict";
 
-DAWCore.prototype.changePatternSynth = function( id, synth ) {
+import DAWCoreBuilder from "../DAWCoreBuilder";
+
+DAWCoreBuilder.prototype.changePatternSynth = function(id, synth ) {
 	const pat = this.get.pattern( id );
 
 	if ( !pat ) {

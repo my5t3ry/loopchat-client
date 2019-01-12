@@ -1,6 +1,8 @@
 "use strict";
 
-DAWCore.prototype.namePattern = function( id, name ) {
+import DAWCoreBuilder from "../DAWCoreBuilder";
+
+DAWCoreBuilder.prototype.namePattern = function(id, name ) {
 	const pat = this.get.pattern( id );
 
 	pat
@@ -8,7 +10,7 @@ DAWCore.prototype.namePattern = function( id, name ) {
 		: this._error( "namePattern", "patterns", id );
 };
 
-DAWCore.prototype._namePattern = function( id, pat, newName ) {
+DAWCoreBuilder.prototype._namePattern = function( id, pat, newName ) {
 	const name = DAWCore.trim2( newName );
 
 	if ( name && name !== pat.name ) {

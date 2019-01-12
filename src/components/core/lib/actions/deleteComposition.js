@@ -1,13 +1,15 @@
 "use strict";
 
-DAWCore.prototype.deleteComposition = function( id ) {
+import DAWCoreBuilder from "../DAWCoreBuilder";
+
+DAWCoreBuilder.prototype.deleteComposition = function(id ) {
 	if ( id === this.get.id() ) {
 		this.closeComposition();
 	}
 	this._deleteComposition( id );
 };
 
-DAWCore.prototype._deleteComposition = function( id ) {
+DAWCoreBuilder.prototype._deleteComposition = function( id ) {
 	const cmp = this.compositions.get( id );
 
 	if ( cmp ) {

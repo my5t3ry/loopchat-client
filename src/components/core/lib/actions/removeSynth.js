@@ -1,6 +1,8 @@
 "use strict";
 
-DAWCore.prototype.removeSynth = function( id ) {
+import DAWCoreBuilder from "../DAWCoreBuilder";
+
+DAWCoreBuilder.prototype.removeSynth = function(id ) {
 	const syn = this.get.synth( id );
 
 	syn
@@ -8,7 +10,7 @@ DAWCore.prototype.removeSynth = function( id ) {
 		: this._error( "removeSynth", "synths", id );
 };
 
-DAWCore.prototype._removeSynth = function( synthId ) {
+DAWCoreBuilder.prototype._removeSynth = function( synthId ) {
 	const keys = {},
 		blocks = {},
 		patterns = {},
@@ -27,10 +29,10 @@ DAWCore.prototype._removeSynth = function( synthId ) {
 			} );
 		}
 	} );
-	if ( !DAWCore.objectIsEmpty( keys ) ) {
+	if ( !DAWCoreBuilder.objectIsEmpty( keys ) ) {
 		obj.keys = keys;
 		obj.patterns = patterns;
-		if ( !DAWCore.objectIsEmpty( blocks ) ) {
+		if ( !DAWCoreBuilder.objectIsEmpty( blocks ) ) {
 			obj.blocks = blocks;
 		}
 	}

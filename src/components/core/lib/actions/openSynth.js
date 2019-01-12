@@ -1,6 +1,8 @@
 "use strict";
 
-DAWCore.prototype.openSynth = function( id ) {
+import DAWCoreBuilder from "../DAWCoreBuilder";
+
+DAWCoreBuilder.prototype.openSynth = function(id ) {
 	if ( id !== this.get.synthOpened() ) {
 		const patId = this._openSynth_find( id ),
 			obj = { synthOpened: id };
@@ -12,7 +14,7 @@ DAWCore.prototype.openSynth = function( id ) {
 	}
 };
 
-DAWCore.prototype._openSynth_find = function( id ) {
+DAWCoreBuilder.prototype._openSynth_find = function( id ) {
 	const pat = Object.entries( this.get.patterns() )
 			.find( ( [ patId, pat ] ) => pat.synth === id );
 

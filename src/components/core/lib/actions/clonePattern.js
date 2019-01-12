@@ -1,6 +1,8 @@
 "use strict";
 
-DAWCore.prototype.clonePattern = function( id ) {
+import DAWCoreBuilder from "../DAWCoreBuilder";
+
+DAWCoreBuilder.prototype.clonePattern = function(id ) {
 	const pat = this.get.pattern( id );
 
 	pat
@@ -8,7 +10,7 @@ DAWCore.prototype.clonePattern = function( id ) {
 		: this._error( "clonePattern", "patterns", id );
 };
 
-DAWCore.prototype._clonePattern = function( patId, pat ) {
+DAWCoreBuilder .prototype._clonePattern = function( patId, pat ) {
 	const newPat = Object.assign( {}, pat ),
 		newKeys = DAWCore.objectDeepAssign( {}, this.get.keys( pat.keys ) ),
 		newPatId = this._getNextIdOf( this.get.patterns() ),

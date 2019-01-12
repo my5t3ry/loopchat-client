@@ -1,6 +1,8 @@
 "use strict";
 
-DAWCore.prototype.exportCompositionToJSON = function( id ) {
+import DAWCoreBuilder from "../DAWCoreBuilder";
+
+DAWCoreBuilder.prototype.exportCompositionToJSON = function(id ) {
 	const cmp = this.get.composition( id );
 
 	if ( cmp ) {
@@ -13,7 +15,7 @@ DAWCore.prototype.exportCompositionToJSON = function( id ) {
 	}
 };
 
-DAWCore._exportJSONTabs = {
+DAWCoreBuilder ._exportJSONTabs = {
 	keys: 4,
 	synths: 5,
 	tracks: 3,
@@ -21,7 +23,7 @@ DAWCore._exportJSONTabs = {
 	patterns: 3,
 };
 
-DAWCore.prototype._exportCompositionToJSON = function( cmp ) {
+DAWCoreBuilder.prototype._exportCompositionToJSON = function( cmp ) {
 	const delTabs = DAWCore._exportJSONTabs,
 		reg = /^\t"(\w*)": {$/,
 		lines = JSON.stringify( cmp, null, "\t" ).split( "\n" );
@@ -29,8 +31,8 @@ DAWCore.prototype._exportCompositionToJSON = function( cmp ) {
 		regTa2,
 		delTabCurr;
 
-	if ( DAWCore._URLToRevoke ) {
-		URL.revokeObjectURL( DAWCore._URLToRevoke );
+	if ( DAWCoreBuilder._URLToRevoke ) {
+		URL.revokeObjectURL( DAWCoreBuilder._URLToRevoke );
 	}
 	lines.forEach( ( line, i ) => {
 		const res = reg.exec( line );
@@ -45,6 +47,6 @@ DAWCore.prototype._exportCompositionToJSON = function( cmp ) {
 			lines[ i ] = lines[ i ].replace( regTab, "~" ).replace( regTa2, "~}" );
 		}
 	} );
-	return DAWCore._URLToRevoke = URL.createObjectURL( new Blob( [
+	return DAWCoreBuilder._URLToRevoke = URL.createObjectURL( new Blob( [
 		lines.join( "\n" ).replace( /\n~/g, " " ) ] ) );
 };

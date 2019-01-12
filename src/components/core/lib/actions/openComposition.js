@@ -1,6 +1,8 @@
 "use strict";
 
-DAWCore.prototype.openComposition = function( id ) {
+import DAWCoreBuilder from "../DAWCoreBuilder";
+
+DAWCoreBuilder.prototype.openComposition = function(id ) {
 	const cmp = this.compositions.get( id );
 
 	if ( cmp ) {
@@ -13,7 +15,7 @@ DAWCore.prototype.openComposition = function( id ) {
 	return Promise.reject( `DAWCore: no composition with the id "${ id }".` );
 };
 
-DAWCore.prototype._compositionOpened = function( cmp ) {
+DAWCoreBuilder.prototype._compositionOpened = function( cmp ) {
 	this._call( "focusOn", "composition", true );
 	this._call( "compositionOpened", cmp );
 	this._startLoop();

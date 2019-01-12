@@ -1,6 +1,8 @@
 "use strict";
 
-DAWCore.prototype.openPattern = function( id ) {
+import DAWCoreBuilder from "../DAWCoreBuilder";
+
+DAWCoreBuilder.prototype.openPattern = function(id ) {
 	if ( id !== this.get.patternOpened() ) {
 		const synId = this.get.pattern( id ).synth,
 			obj = { patternOpened: id };

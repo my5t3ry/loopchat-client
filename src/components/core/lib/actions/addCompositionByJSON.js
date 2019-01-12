@@ -1,6 +1,8 @@
 "use strict";
 
-DAWCore.prototype.addCompositionByJSON = function( json, opt ) {
+import DAWCoreBuilder from "../DAWCoreBuilder";
+
+DAWCoreBuilder.prototype.addCompositionByJSON = function(json, opt ) {
 	return new Promise( ( res, rej ) => {
 		try {
 			const cmp = JSON.parse( json );

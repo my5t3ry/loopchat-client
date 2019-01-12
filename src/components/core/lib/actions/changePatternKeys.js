@@ -1,6 +1,8 @@
 "use strict";
 
-DAWCore.prototype.changePatternKeys = function( patId, keysObj ) {
+import DAWCoreBuilder from "../DAWCoreBuilder";
+
+DAWCoreBuilder.prototype.changePatternKeys = function(patId, keysObj ) {
 	const pat = this.get.pattern( patId ),
 		keys = pat && this.get.keys( pat.keys );
 

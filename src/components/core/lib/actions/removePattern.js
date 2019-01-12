@@ -1,6 +1,8 @@
 "use strict";
 
-DAWCore.prototype.removePattern = function( id ) {
+import DAWCoreBuilder from "../DAWCoreBuilder";
+
+DAWCoreBuilder.prototype.removePattern = function(id ) {
 	const pat = this.get.pattern( id );
 
 	pat
@@ -8,7 +10,7 @@ DAWCore.prototype.removePattern = function( id ) {
 		: this._error( "removePattern", "patterns", id );
 };
 
-DAWCore.prototype._removePattern = function( patId, pat ) {
+DAWCoreBuilder.prototype._removePattern = function( patId, pat ) {
 	const obj = {
 			keys: { [ pat.keys ]: undefined },
 			patterns: { [ patId ]: undefined },
@@ -20,7 +22,7 @@ DAWCore.prototype._removePattern = function( patId, pat ) {
 			return blocks;
 		}, {} );
 
-	if ( !DAWCore.objectIsEmpty( blocks ) ) {
+	if ( !DAWCoreBuilder.objectIsEmpty( blocks ) ) {
 		obj.blocks = blocks;
 	}
 	if ( patId === this.get.patternOpened() ) {

@@ -2,7 +2,9 @@
 
 // a read check is missing somewhere...
 
-DAWCore.prototype.addCompositionByBlob = function( blob, opt ) {
+import DAWCoreBuilder from "../DAWCoreBuilder";
+
+DAWCoreBuilder.prototype.addCompositionByBlob = function(blob, opt ) {
 	return new Promise( ( res, rej ) => {
 		const rd = new FileReader();
 

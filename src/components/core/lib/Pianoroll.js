@@ -1,4 +1,5 @@
 "use strict";
+import gswaScheduler from './../gs-wa/gswaScheduler/gswaScheduler'
 
 export default class Pianoroll {
 	constructor( daw ) {

@@ -1,10 +1,12 @@
 "use strict";
 
-DAWCore.prototype.newSynth = function() {
+import DAWCoreBuilder from "../DAWCoreBuilder";
+
+DAWCoreBuilder.prototype.newSynth = function() {
 	this.compositionChange( this._newSynth() );
 };
 
-DAWCore.prototype._newSynth = function() {
+DAWCoreBuilder.prototype._newSynth = function() {
 	const id = this._getNextIdOf( this.get.synths() ),
 		name = this._createUniqueName( "synths", "synth" ),
 		obj = {

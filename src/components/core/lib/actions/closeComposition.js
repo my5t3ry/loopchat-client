@@ -1,6 +1,8 @@
 "use strict";
 
-DAWCore.prototype.closeComposition = function() {
+import DAWCoreBuilder from "../DAWCoreBuilder";
+
+DAWCoreBuilder.prototype.closeComposition = function() {
 	if ( this.composition.loaded ) {
 		const cmp = this.get.composition();
 

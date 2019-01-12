@@ -1,6 +1,8 @@
 "use strict";
 
-DAWCore.prototype.addCompositionByURL = function( url, opt ) {
+import DAWCoreBuilder from "../DAWCoreBuilder";
+
+DAWCoreBuilder.prototype.addCompositionByURL = function(url, opt ) {
 	return fetch( url )
 		.then( res => {
 			if ( !res.ok ) {

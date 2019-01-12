@@ -1,6 +1,8 @@
 "use strict";
 
-DAWCore.prototype.addComposition = function( cmp, options ) {
+import DAWCoreBuilder from "../DAWCoreBuilder";
+
+DAWCoreBuilder.prototype.addComposition = function(cmp, options ) {
 	const opt = Object.freeze( Object.assign( {
 			localSaving: true,
 		}, options ) );

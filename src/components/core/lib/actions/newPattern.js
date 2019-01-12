@@ -1,6 +1,8 @@
 "use strict";
 
-DAWCore.prototype.newPattern = function( synthId ) {
+import DAWCoreBuilder from "../DAWCoreBuilder";
+
+DAWCoreBuilder.prototype.newPattern = function(synthId ) {
 	const syn = this.get.synth( synthId );
 
 	syn
@@ -8,7 +10,7 @@ DAWCore.prototype.newPattern = function( synthId ) {
 		: this._error( "newPattern", "synths", synthId );
 };
 
-DAWCore.prototype._newPattern = function( synthId ) {
+DAWCoreBuilder.prototype._newPattern = function( synthId ) {
 	const keysId = this._getNextIdOf( this.get.keys() ),
 		patId = this._getNextIdOf( this.get.patterns() );
 
