@@ -1,18 +1,7 @@
 "use strict";
-import './gsuiPanels.css';
 
 class gsuiPanels {
-	init(){
-		document.addEventListener( "mousemove", e => {
-			gsuiPanels._focused && gsuiPanels._focused._onmousemove( e );
-		} );
-		document.addEventListener( "mouseup", e => {
-			gsuiPanels._focused && gsuiPanels._focused._onmouseup( e );
-		} );
-
-	}
 	constructor( root ) {
-
 		this.rootElement = root;
 		this._cursorElem = document.createElement( "div" );
 		this._cursorElem.className = "gsuiPanels-cursor";
@@ -178,5 +167,9 @@ class gsuiPanels {
 	}
 }
 
-
-export {gsuiPanels as default};
+document.addEventListener( "mousemove", e => {
+	gsuiPanels._focused && gsuiPanels._focused._onmousemove( e );
+} );
+document.addEventListener( "mouseup", e => {
+	gsuiPanels._focused && gsuiPanels._focused._onmouseup( e );
+} );

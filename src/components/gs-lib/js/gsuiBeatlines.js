@@ -47,5 +47,3 @@ class gsuiBeatlines {
 		el.style.backgroundSize = `${ this._viewBox }px 1px`;
 	}
 }
-
-export {gsuiBeatlines as default};

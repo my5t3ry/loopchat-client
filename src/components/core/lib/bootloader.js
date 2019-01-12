@@ -6,11 +6,10 @@ export class Bootloader {
     constructor() {
     }
 
-
     async bootstrap() {
         this.checkDom().then(function () {
-
-        })
+            this.boot();
+        }.bind(this))
     }
 
     async boot() {
@@ -28,10 +27,10 @@ export class Bootloader {
                 .split("&")
                 .map(kv => kv.split("="))
             );
-     
         window.DAW = DAW;
         window.VERSION = "0.19.0";
         DAW.initPianoroll();
+        await require('../../gs-lib/js');
         await require('./actions.js');
         await require('./ui.js');
         await require('./utils.js');
@@ -63,9 +62,7 @@ export class Bootloader {
         DAW.cb.pause =
             DAW.cb.stop = () => DOM.play.classList.remove("ico-pause");
         DAW.cb.play = () => DOM.play.classList.add("ico-pause");
-
         window.onresize();
-
         UIauthGetMe();
         DAW.addCompositionsFromLocalStorage();
 
@@ -96,7 +93,6 @@ export class Bootloader {
         UIsettingsPopupInit();
         UImasterAnalyserInit();
         UIshortcutsPopupInit();
-
     }
 
 
