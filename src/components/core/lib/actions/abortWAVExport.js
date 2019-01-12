@@ -7,3 +7,4 @@ DAWCore.prototype.abortWAVExport = function() {
 		this.composition.stop();
 	}
 };
+                                                                                                   
