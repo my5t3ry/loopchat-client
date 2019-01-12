@@ -2,7 +2,6 @@ import React, {Component} from 'react'
 import {object} from 'prop-types'
 import {connect} from 'react-redux'
 import {keys, map, values} from 'lodash'
-import injectTapEventPlugin from 'react-tap-event-plugin'
 import uuidV4 from 'uuid/v4'
 import './dashboard.css'
 import {Editor} from '../editor'
@@ -16,10 +15,11 @@ import {
   EDITOR_WORKSPACE,
   HOME_WORKSPACE,
 } from '../../types/workspace'
+import PatternRoll from "./patternroll/PatternRoll";
+
 
 
 // we need this for this component to work with AppBar
-injectTapEventPlugin()
 
 const actions = {
   createTimeline,
@@ -88,6 +88,7 @@ export class Dashboard extends Component {
     return(
       <div className='dashboard'>
         <ProjectBar/>
+        <PatternRoll/>
         {this.renderCurrentWorkspace()}
       </div>
     )
