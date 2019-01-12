@@ -2,6 +2,11 @@
 
 class gsuiSynthesizer {
 	constructor() {
+
+		gsuiSynthesizer.template = document.querySelector( "#gsuiSynthesizer-template" );
+		gsuiSynthesizer.template.remove();
+		gsuiSynthesizer.template.removeAttribute( "id" );
+
 		const root = gsuiSynthesizer.template.cloneNode( true );
 
 		this.rootElement = root;
@@ -120,7 +125,3 @@ class gsuiSynthesizer {
 		this.onchange( { oscillators: { [ id ]: undefined } } );
 	}
 }
-
-gsuiSynthesizer.template = document.querySelector( "#gsuiSynthesizer-template" );
-gsuiSynthesizer.template.remove();
-gsuiSynthesizer.template.removeAttribute( "id" );

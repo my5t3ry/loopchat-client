@@ -1,4 +1,3 @@
-import DAWCore, {Composition, LocalStorage, Pianoroll} from '../core.js'
 import {UIdomInitController} from './ui/dom' ;
 
 export class Bootloader {
@@ -30,7 +29,7 @@ export class Bootloader {
         window.DAW = DAW;
         window.VERSION = "0.19.0";
         DAW.initPianoroll();
-        await require('../../gs-lib/js');
+        await require('../../gs-lib/gs-lib');
         await require('./actions.js');
         await require('./ui.js');
         await require('./utils.js');
@@ -39,7 +38,7 @@ export class Bootloader {
     }
 
     initBindings(DAW, DOM, hash) {
-        gswaPeriodicWaves.forEach((w, name) => (
+        gswaPeriodicWaves.forEach((w, name) => (                                                               
             thisgsuiPeriodicWave.addWave(name, w.real, w.imag)
         ));
         window.onkeyup = UIkeyboardUp;
@@ -101,7 +100,7 @@ export class Bootloader {
             function step() {
                 if (document.querySelector("#gsuiPatternroll-template") != null &&
                     document.querySelector("#gsuiTimeline-template") != null &&
-                    document.querySelector("#gsuiTracklist-template") != null
+                    document.querySelector("#gsuiSliderGroup-slider-template") != null
                 ) {
                     resolve();
                 } else {

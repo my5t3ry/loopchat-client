@@ -1,7 +1,16 @@
 "use strict";
+import {gsuiBlocksManager} from "../gs-lib";
 
 class gsuiPatternroll extends gsuiBlocksManager {
 	constructor() {
+
+		gsuiPatternroll.template = document.querySelector( "#gsuiPatternroll-template" );
+		gsuiPatternroll.template.remove();
+		gsuiPatternroll.template.removeAttribute( "id" );
+		gsuiPatternroll.blockTemplate = document.querySelector( "#gsuiPatternroll-block-template" );
+		gsuiPatternroll.blockTemplate.remove();
+		gsuiPatternroll.blockTemplate.removeAttribute( "id" );
+
 		const root = gsuiPatternroll.template.cloneNode( true );
 
 		super( root );
@@ -272,10 +281,3 @@ class gsuiPatternroll extends gsuiBlocksManager {
 		return true;
 	}
 }
-
-gsuiPatternroll.template = document.querySelector( "#gsuiPatternroll-template" );
-gsuiPatternroll.template.remove();
-gsuiPatternroll.template.removeAttribute( "id" );
-gsuiPatternroll.blockTemplate = document.querySelector( "#gsuiPatternroll-block-template" );
-gsuiPatternroll.blockTemplate.remove();
-gsuiPatternroll.blockTemplate.removeAttribute( "id" );

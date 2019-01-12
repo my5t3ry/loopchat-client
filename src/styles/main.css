@@ -1,9 +1,5 @@
 @value grey, lightGrey from './palette.css';
 
-@import "../components/gs-lib/gsuiBlocksManager/gsuiBlocksManager.css";
-@import "../components/gs-lib/gsuiPanels/gsuiPanels.css";
-@import "../components/gs-lib/gsuiTimeline/gsuiTimeline.css";
-@import "../components/gs-lib/gsuiPatteroll/gsuiPatternroll.css";
 
 html {
     margin: 0;

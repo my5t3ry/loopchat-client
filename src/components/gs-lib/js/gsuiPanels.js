@@ -2,6 +2,14 @@
 
 class gsuiPanels {
 	constructor( root ) {
+
+		document.addEventListener( "mousemove", e => {
+			gsuiPanels._focused && gsuiPanels._focused._onmousemove( e );
+		} );
+		document.addEventListener( "mouseup", e => {
+			gsuiPanels._focused && gsuiPanels._focused._onmouseup( e );
+		} );
+
 		this.rootElement = root;
 		this._cursorElem = document.createElement( "div" );
 		this._cursorElem.className = "gsuiPanels-cursor";
@@ -166,10 +174,3 @@ class gsuiPanels {
 			: this._parent.clientHeight;
 	}
 }
-
-document.addEventListener( "mousemove", e => {
-	gsuiPanels._focused && gsuiPanels._focused._onmousemove( e );
-} );
-document.addEventListener( "mouseup", e => {
-	gsuiPanels._focused && gsuiPanels._focused._onmouseup( e );
-} );

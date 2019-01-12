@@ -14,9 +14,8 @@ import {Bootloader} from '../core/lib/bootloader';
 import {
   INSTRUMENT_WORKSPACE,
   EDITOR_WORKSPACE,
-  HOME_WORKSPACE,
+  HOME_WORKSPACE,                                                                      
 } from '../../types/workspace'
-import PatternRoll from "../gs-lib/gsuiPatteroll/PatternRoll";
 import Gstemplates from "../gs-lib/gstemplates";
 
 

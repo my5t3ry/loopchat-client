@@ -1,9 +1,8 @@
 "use strict";
 
+import {gsuiPanels} from "../../../gs-lib/gs-lib";
 
-import gsuiPanels from "../../../gs-lib/gsuiPanels/gsuiPanels";
-
-export class  UIdomInitController {
+export class UIdomInitController {
     constructor() {
     }
 

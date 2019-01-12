@@ -4,6 +4,14 @@ window.SVGURL = "http://www.w3.org/2000/svg";
 
 class gsuiDotline {
 	constructor() {
+
+		document.addEventListener( "mousemove", e => {
+			gsuiDotline.focused && gsuiDotline.focused._mousemoveDot( e );
+		} );
+		document.addEventListener( "mouseup", () => {
+			gsuiDotline.focused && gsuiDotline.focused._mouseupDot();
+		} );
+
 		const root = document.createElement( "div" ),
 			svg = document.createElementNS( SVGURL, "svg" ),
 			polyline = document.createElementNS( SVGURL, "polyline" );
@@ -307,10 +315,3 @@ class gsuiDotline {
 		}
 	}
 }
-
-document.addEventListener( "mousemove", e => {
-	gsuiDotline.focused && gsuiDotline.focused._mousemoveDot( e );
-} );
-document.addEventListener( "mouseup", () => {
-	gsuiDotline.focused && gsuiDotline.focused._mouseupDot();
-} );

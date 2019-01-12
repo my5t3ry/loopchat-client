@@ -2,6 +2,13 @@
 
 class gsuiOscillator {
 	constructor() {
+
+		gsuiOscillator.attrSliders = [ "gain", "pan", "detune" ];
+
+		gsuiOscillator.template = document.querySelector( "#gsuiOscillator-template" );
+		gsuiOscillator.template.remove();
+		gsuiOscillator.template.removeAttribute( "id" );
+
 		const root = gsuiOscillator.template.cloneNode( true ),
 			sliders = {},
 			waves = [
@@ -171,9 +178,3 @@ class gsuiOscillator {
 		this.onchange( { [ attr ]: val } );
 	}
 }
-
-gsuiOscillator.attrSliders = [ "gain", "pan", "detune" ];
-
-gsuiOscillator.template = document.querySelector( "#gsuiOscillator-template" );
-gsuiOscillator.template.remove();
-gsuiOscillator.template.removeAttribute( "id" );

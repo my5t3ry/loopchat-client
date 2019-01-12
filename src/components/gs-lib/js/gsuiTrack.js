@@ -2,6 +2,11 @@
 
 class gsuiTrack {
 	constructor() {
+
+		gsuiTrack.template = document.querySelector( "#gsuiTrack-template" );
+		gsuiTrack.template.remove();
+		gsuiTrack.template.removeAttribute( "id" );
+
 		const root = gsuiTrack.template.cloneNode( true );
 
 		this.onchange =
@@ -81,7 +86,3 @@ class gsuiTrack {
 		};
 	}
 }
-
-gsuiTrack.template = document.querySelector( "#gsuiTrack-template" );
-gsuiTrack.template.remove();
-gsuiTrack.template.removeAttribute( "id" );

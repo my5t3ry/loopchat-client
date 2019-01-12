@@ -1,6 +1,20 @@
 "use strict";
 
 function gsuiKeys() {
+
+	gsuiKeys.template = document.querySelector( "#gsuiKeys-octave-template" );
+	gsuiKeys.template.remove();
+	gsuiKeys.template.removeAttribute( "id" );
+
+	gsuiKeys.keyIds = "c c# d d# e f f# g g# a a# b".split( " " );
+	gsuiKeys.keyIds.forEach( ( k, i, arr ) => arr[ k ] = i );
+	gsuiKeys.midiToKeyStr = m => gsuiKeys.keyIds[ m % 12 ] + ~~( m / 12 );
+	gsuiKeys.keyStrToMidi = k => {
+		var key = k.substr( 0, k[ 1 ] !== "#" ? 1 : 2 );
+
+		return k.substr( key.length ) * 12 + gsuiKeys.keyIds[ key ];
+	};
+
 	var root = document.createElement( "div" );
 
 	this._init();
@@ -10,15 +24,6 @@ function gsuiKeys() {
 	root.className = "gsuiKeys";
 	root.onmousedown = this._evmdRoot.bind( this );
 }
-
-gsuiKeys.keyIds = "c c# d d# e f f# g g# a a# b".split( " " );
-gsuiKeys.keyIds.forEach( ( k, i, arr ) => arr[ k ] = i );
-gsuiKeys.midiToKeyStr = m => gsuiKeys.keyIds[ m % 12 ] + ~~( m / 12 );
-gsuiKeys.keyStrToMidi = k => {
-	var key = k.substr( 0, k[ 1 ] !== "#" ? 1 : 2 );
-
-	return k.substr( key.length ) * 12 + gsuiKeys.keyIds[ key ];
-};
 
 gsuiKeys.keyboardToKey = {
 
@@ -65,11 +70,8 @@ gsuiKeys.keyboardToKey = {
 	BracketRight: [ 2, 7 ],
 };
 
-gsuiKeys.template = document.querySelector( "#gsuiKeys-octave-template" );
-gsuiKeys.template.remove();
-gsuiKeys.template.removeAttribute( "id" );
-
 gsuiKeys.prototype = {
+	
 	remove() {
 		this.empty();
 		this.rootElement.remove();

@@ -2,6 +2,20 @@
 
 class gsuiSlider {
 	constructor() {
+
+		gsuiSlider.template = document.querySelector( "#gsuiSlider-template" );
+		gsuiSlider.template.remove();
+		gsuiSlider.template.removeAttribute( "id" );
+
+		document.addEventListener( "pointerlockchange", () => {
+			const el = document.pointerLockElement,
+				slider = el && el._gsuiSlider_instance;
+
+			if ( slider ) {
+				slider._locked = true;
+			}
+		} );
+
 		const root = gsuiSlider.template.cloneNode( true );
 
 		this.rootElement = root;
@@ -186,16 +200,3 @@ class gsuiSlider {
 		this._onchange();
 	}
 }
-
-gsuiSlider.template = document.querySelector( "#gsuiSlider-template" );
-gsuiSlider.template.remove();
-gsuiSlider.template.removeAttribute( "id" );
-
-document.addEventListener( "pointerlockchange", () => {
-	const el = document.pointerLockElement,
-		slider = el && el._gsuiSlider_instance;
-
-	if ( slider ) {
-		slider._locked = true;
-	}
-} );

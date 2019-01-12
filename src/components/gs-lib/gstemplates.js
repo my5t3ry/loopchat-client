@@ -24,7 +24,7 @@ export default class Gstemplates extends Component {
             <a id="signup" target="_blank" rel="noopener" title="A sign-up Google form" href="https://docs.google.com/forms/d/17cMQtfQ8QmP2Cj1qAxXsUpuo3Rr1fF8hmFPZroSDvq0"></a>
             <div id="appGainWrap" title="Main app volume (this parameter will not affect the rendering)"></div>
           </div>
-          <div className="panel-menu"><a href id="newComposition" className="cmps-btn" data-text="New" title="Create a new composition (Alt + N)"></a><a href id="openComposition" className="cmps-btn" data-text="Open" title="Open a composition (Ctrl + O)"></a><a href id="renderComposition" className="cmps-btn" data-text="Render" title="Render the composition"></a></div>
+          <div className="panel-menu"><a id="newComposition" className="cmps-btn" data-text="New" title="Create a new composition (Alt + N)"></a><a  id="openComposition" className="cmps-btn" data-text="Open" title="Open a composition (Ctrl + O)"></a><a  id="renderComposition" className="cmps-btn" data-text="Render" title="Render the composition"></a></div>
           <div id="cmps" className="panel-body nice-scrollbar"></div>
         </div>
         <div data-panel="pan-history">
@@ -38,7 +38,7 @@ export default class Gstemplates extends Component {
           <div id="patterns" className="panel-body nice-scrollbar"></div>
         </div>
         <div data-panel="pan-maingrid">
-          <div id="controls" className="no-select"><a tabIndex="2" id="togglePlay" title="Switch grid focus" className="ctrl-item" href></a>
+          <div id="controls" className="no-select"><a tabIndex="2" id="togglePlay" title="Switch grid focus" className="ctrl-item" ></a>
             <button tabIndex="3" id="play" className="ctrl-item ctrl-btn icon ico-play"></button>
             <button tabIndex="4" id="stop" className="ctrl-item ctrl-btn icon ico-stop"></button>
             <div id="clock" className="ctrl-item">
@@ -96,7 +96,7 @@ export default class Gstemplates extends Component {
         <div className="popup" id="renderPopupContent" data-remove>
           <fieldset>
             <legend>Render the current composition</legend>
-            <div id="renderWrap"><a href id="renderBtn"><span id="renderBtn0">Render</span><span id="renderBtn1">Rendering...</span><span id="renderBtn2">Download WAV file</span></a>
+            <div id="renderWrap"><a  id="renderBtn"><span id="renderBtn0">Render</span><span id="renderBtn1">Rendering...</span><span id="renderBtn2">Download WAV file</span></a>
               <progress id="renderProgress" value="" max="1"></progress>
             </div>
           </fieldset>
@@ -227,7 +227,7 @@ export default class Gstemplates extends Component {
         </div>
         <div id="gsuiPatternroll-template" className="gsuiBlocksManager gsuiPatternroll gsuiPanels-x" tabIndex="-1">
           <div className="gsuiBlocksManager-sidePanel">
-            <div className="gsuiBlocksManager-sidePanelMenu"><a href className="gsuiBlocksManager-magnet gsui-opacityHover"><span className="gsuiBlocksManager-magnetValue"></span></a></div>
+            <div className="gsuiBlocksManager-sidePanelMenu"><a  className="gsuiBlocksManager-magnet gsui-opacityHover"><span className="gsuiBlocksManager-magnetValue"></span></a></div>
             <div className="gsuiBlocksManager-sidePanelContent"></div>
           </div>
           <div className="gsuiBlocksManager-gridPanel">
@@ -253,7 +253,7 @@ export default class Gstemplates extends Component {
         <div id="gsuiPianoroll-template" className="gsuiBlocksManager gsuiPianoroll gsuiPanels-x" tabIndex="-1">
           <div className="gsuiBlocksManager-sidePanel gsuiPanels-y">
             <div className="gsuiPianoroll-sidePanelTop">
-              <div className="gsuiBlocksManager-sidePanelMenu"><a href className="gsuiBlocksManager-magnet gsui-opacityHover"><span className="gsuiBlocksManager-magnetValue"></span></a></div>
+              <div className="gsuiBlocksManager-sidePanelMenu"><a  className="gsuiBlocksManager-magnet gsui-opacityHover"><span className="gsuiBlocksManager-magnetValue"></span></a></div>
               <div className="gsuiBlocksManager-sidePanelContent"></div>
             </div>
             <div className="gsuiPianoroll-sidePanelBottom"><select className="gsuiPianoroll-slidersSelect gsui-opacityHover">
