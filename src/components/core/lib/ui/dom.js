@@ -3,19 +3,23 @@
 
 class UIdomInitController {
 
-   static UIdomInit() {
+
+    constructor() {
+    }
+
+    static UIdomInit() {
         this.uipanels = new gsuiPanels(document.querySelector("#app"));
 
-       let DOM;
-       this.uipanels.attached();
-       document.querySelectorAll("div[data-panel]").forEach(pan => {
+        let DOM;
+        this.uipanels.attached();
+        document.querySelectorAll("div[data-panel]").forEach(pan => {
 
             const div = document.getElementById(pan.dataset.panel);
             div && div.append.apply(div, pan.children);
         });
-       document.querySelectorAll("[id]").forEach(el => {
+        document.querySelectorAll("[id]").forEach(el => {
             DOM[el.id] = el;
-            if ("remove" in el.dataset) {                         n
+            if ("remove" in el.dataset) {
                 el.remove();
                 el.removeAttribute("data-remove");
             }

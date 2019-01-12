@@ -10,7 +10,7 @@ import {ProjectBar} from './projectBar'
 import {createTimeline} from '../../redux/actions/timelines/timelines'
 import {getActiveWorkspace} from '../../redux/selectors/workspaces'
 import {getOpenInstruments} from '../../redux/selectors/instruments'
-import {bootloadder} from '../core/core';
+import {Bootloader} from '../core/lib/bootloader';
 import {
   INSTRUMENT_WORKSPACE,
   EDITOR_WORKSPACE,
@@ -18,9 +18,6 @@ import {
 } from '../../types/workspace'
 import PatternRoll from "../gs-lib/gsuiPatternRoll/PatternRoll";
 
-
-
-// we need this for this component to work with AppBar
 
 const actions = {
   createTimeline,
@@ -79,7 +76,7 @@ export class Dashboard extends Component {
     }
   }
   componentDidMount(){
-        this.bootloader = new bootloadder();
+        this.bootloader = new Bootloader();
         this.bootloader.bootstrap();
   }
   
