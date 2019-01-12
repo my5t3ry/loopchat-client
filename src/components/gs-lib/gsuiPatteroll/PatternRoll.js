@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import gsuiPatternroll from "./gsuiPatternroll";
-import Tracklist from "../gsuiTracklist/tracklist";
+import Tracklist from "../gsuiTrackllist/tracklist";
 import Blockmanager from "../gsuiBlocksManager/blockmanager";
 
 export default class PatternRoll extends Component {

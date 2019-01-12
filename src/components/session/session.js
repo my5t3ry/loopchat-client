@@ -6,7 +6,7 @@ import {connectMidiDevices} from '../../redux/actions/midi/index'
 import {connectionStatus} from '../../types/connectionStatus'
 import {Header} from '../header/header'
 import {Dashboard} from '../dashboard/dashboard'
-import {grey, purple} from '../../styles/palette.css'
+import {grey, orange} from '../../styles/palette.css'
 
 const host = '127.0.0.1'
 const port = '3145'
@@ -14,7 +14,7 @@ const port = '3145'
 const mapStateToProps = (state, { params }) => {
   // check for sessionID from router
   let sessionID = params.sessionID || ''
-  
+
   return {
     connectionStatus: state.connection.status,
     session: state.session,
@@ -29,14 +29,14 @@ const actions = {
 
 @connect(mapStateToProps, actions)
 export default class Session extends Component {
-  
+
   componentDidMount() {
     const {
       connectAndJoinSession,
       connectMidiDevices,
       sessionID,
     } = this.props
-    
+
     // join a session
     connectAndJoinSession(host, port, sessionID)
 
@@ -47,26 +47,26 @@ export default class Session extends Component {
   render() {
     const isLoading = this.props.connectionStatus === connectionStatus.CONNECTING
     const loading = isLoading
-          ? 'loading'
-          : 'hide'
+        ? 'loading'
+        : 'hide'
 
     return (
-      <div>
-        {
-          isLoading ? [] : <Header session={this.props.session}/>
-        }
-        <RefreshIndicator
-          top={(window.innerHeight-100)/2}
-          left={(window.innerWidth-100)/2}
-          style={{backgroundColor:grey}}
-          status={loading}
-          size={100}
-          loadingColor={purple}
-          zDepth={0}/>
-        {
+        <div>
+          {
+            isLoading ? [] : <Header session={this.props.session}/>
+          }
+          <RefreshIndicator
+              top={(window.innerHeight-100)/2}
+              left={(window.innerWidth-100)/2}
+              style={{backgroundColor:grey}}
+              status={loading}
+              size={100}
+              loadingColor={orange}
+              zDepth={0}/>
+          {
             isLoading ? [] : <Dashboard session={this.props.session}/>
-        }
-      </div>
+          }
+        </div>
     )
   }
 }

@@ -12,7 +12,7 @@ export { default as UImasterAnalyserInitController } from "./ui/masterAnalyserIn
 export { default as UIopenPopupShow } from "./ui/openPopup.js";
 export { default as UIpatternrollInitController } from "./ui/patternroll.js";
 export { default as UIaddPatternControlleer } from "./ui/patterns.js";
-export { default as UIpianorollIniController } from "./ui/pianoroll.js";
+// export { default as UIpianorollIniController } from "./ui/pianoroll.js";
 export { default as renderPopup } from "./ui/renderPopup.js";
 export { default as UIrenderPopupInitController } from "./ui/settingsPopup.js";
 export { default as UIshortcutsPopupInitController } from "./ui/shortcutsPopup.js";

@@ -12,8 +12,6 @@ import {
 export class Bootloader {
 
     constructor() {
-
-
     }
 
     async bootstrap() {
