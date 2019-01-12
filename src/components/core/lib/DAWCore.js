@@ -271,4 +271,4 @@ class DAWCore {
     }
 }
 
-DAWCore.json = {};
+

@@ -1,11 +1,13 @@
 "use strict";
 
-function UIaboutPopupInit() {
-	DOM.about.onclick = UIaboutPopupShow;
-	DOM.versionCheck.onclick = UIaboutPopupVersionCheck;
+class UIaboutPopupInitController {
+	
+static UIaboutPopupInit() {
+	DOM.about.onclick = UIaboutPopupInitController.UIaboutPopupShow;
+	DOM.versionCheck.onclick = UIaboutPopupInitController.UIaboutPopupVersionCheck;
 }
 
-function UIaboutPopupShow() {
+static UIaboutPopupShow() {
 	gsuiPopup.custom( {
 		title: "About",
 		element: DOM.aboutPopupContent,
@@ -13,7 +15,7 @@ function UIaboutPopupShow() {
 	return false;
 }
 
-function UIaboutPopupVersionCheck() {
+static UIaboutPopupVersionCheck() {
 	const cl = DOM.version.classList;
 
 	cl.remove( "ok", "ko" );
@@ -25,4 +27,7 @@ function UIaboutPopupVersionCheck() {
 			cl.add( res === VERSION ? "ok" : "ko" );
 		}, () => cl.remove( "searching" ) );
 	return false;
+}
+
+
 }

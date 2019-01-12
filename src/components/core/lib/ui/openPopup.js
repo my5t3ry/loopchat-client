@@ -1,17 +1,18 @@
 "use strict";
-
-function UIopenPopupShow() {
+                        class UIopenPopupConroller {
+							
+static UIopenPopupShow() {
 	DOM.inputOpenFile.value =
 	DOM.inputOpenURL.value = "";
 	gsuiPopup.custom( {
 		title: "Open",
-		submit: UIopenPopupSubmit,
+		submit: UIopenPopupConroller.UIopenPopupSubmit,
 		element: DOM.openPopupContent,
 	} );
 	return false;
 }
 
-function UIopenPopupSubmit() {
+static UIopenPopupSubmit() {
 	const url = DOM.inputOpenURL.value,
 		file = DOM.inputOpenFile.files[ 0 ],
 		prom = !url && !file ? null : url
@@ -20,3 +21,5 @@ function UIopenPopupSubmit() {
 
 	prom && prom.then( cmp => DAW.openComposition( cmp.id ) );
 }
+
+						}

@@ -1,5 +1,5 @@
 "use strict";
-import  DAWCore from '../core'
+import {DAWCore} from '../../core'
 
 
 DAWCore.prototype.abortWAVExport = function() {

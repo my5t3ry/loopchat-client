@@ -1,11 +1,13 @@
 "use strict";
 
-function UIsettingsPopupInit() {
-	DOM.settings.onclick = UIsettingsPopupShow;
-	DOM.settingsBPMTap.onclick = UIsettingsPopupBPMTap;
+class UIsettingsPopupInit {
+	
+static UIsettingsPopupInit() {
+	DOM.settings.onclick = UIsettingsPopupInit.UIsettingsPopupShow;
+	DOM.settingsBPMTap.onclick = UUIsettingsPopupInit.IsettingsPopupBPMTap;
 }
 
-function UIsettingsPopupShow() {
+static UIsettingsPopupShow() {
 	const cmp = DAW.get.composition(),
 		bpmTap = DOM.settingsBPMTap;
 
@@ -27,7 +29,7 @@ function UIsettingsPopupShow() {
 	return false;
 }
 
-function UIsettingsPopupSubmit() {
+static UIsettingsPopupSubmit() {
 	const cmp = DAW.get.composition(),
 		envChange = {},
 		cmpChange = {},
@@ -48,7 +50,7 @@ function UIsettingsPopupSubmit() {
 	if ( !DAWCore.objectIsEmpty( cmpChange ) ) { DAW.compositionChange( cmpChange ); }
 }
 
-function UIsettingsPopupBPMTap() {
+static UIsettingsPopupBPMTap() {
 	const time = Date.now(),
 		bpmTap = DOM.settingsBPMTap;
 
@@ -74,4 +76,7 @@ function UIsettingsPopupBPMTap() {
 	}
 	bpmTap.timeBefore = time;
 	return false;
+}
+
+
 }

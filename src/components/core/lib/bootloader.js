@@ -1,20 +1,32 @@
-import DAWCore, {Composition, LocalStorage, Pianoroll} from '../core'
+import DAWCore, {Composition, LocalStorage, Pianoroll} from '../core.js'                      ;
+import {
+    UIkeyboardUiControler,
+    UICompositionChangedControler,
+    UIcompositionsInitControlller,
+    UIcontrolsCurrentTimeController,
+    UIdropController,
+    UIauthInitController     ,
+    UIdomInitController
+} from './ui.js'
 
 class bootloader {
-    bootstrap() {
-        DAWCore.Compositon = new Composition();
-        DAWCore.History = new History();
-        DAWCore.Pianoroll = new Pianoroll();
-        DAWCore.LocalStorage = new LocalStorage();
+     bootstrap() {
+         const DOM = UIdomInitController.UIdomInit();
+         window.DOM = DOM;
+         DAWCore.Compositon = new Composition();
+         DAWCore.History = new History();
+         DAWCore.Pianoroll = new Pianoroll();
+         DAWCore.LocalStorage = new LocalStorage();
+         DAWCore.json = {};
+         DAWCore.prototype = {};
         const DAW = new DAWCore(),
             hash = new Map(location.hash
                 .substr(1)
                 .split("&")
                 .map(kv => kv.split("="))
             );
-
         gswaPeriodicWaves.forEach((w, name) => (
-            gsuiPeriodicWave.addWave(name, w.real, w.imag)
+            thisgsuiPeriodicWave.addWave(name, w.real, w.imag)
         ));
 
         window.DAW = DAW;
@@ -22,35 +34,34 @@ class bootloader {
 
         DAW.initPianoroll();
 
-        window.onkeyup = UIkeyboardUp;
-        window.onkeydown = UIkeyboardDown;
-        window.onbeforeunload = UIcompositionBeforeUnload;
-        document.body.ondrop = UIdrop;
+        window.onkeyup = UIkeyboardUiControler.UIkeyboardUp;
+        window.onkeydown = UIkeyboardUiControler.UIkeyboardDown;
+        window.onbeforeunload = UICompositionChangedControler.UIcompositionBeforeUnload;
+        document.body.ondrop = UIdropController.UIdrop;
         document.body.ondragover = () => false;
-
-        DAW.cb.focusOn = UIcontrolsFocusOn;
-        DAW.cb.currentTime = UIcontrolsCurrentTime;
-        DAW.cb.clockUpdate = UIcontrolsClockUpdate;
-        DAW.cb.compositionOpened = UIcompositionOpened;
-        DAW.cb.compositionClosed = UIcompositionClosed;
-        DAW.cb.compositionChanged = UIcompositionChanged;
-        DAW.cb.compositionDeleted = UIcompositionDeleted;
-        DAW.cb.compositionAdded = UIcompositionAdded;
-        DAW.cb.compositionLoading = UIcompositionLoading;
-        DAW.cb.compositionSavedStatus = UIcompositionSavedStatus;
-        DAW.cb.compositionSavingPromise = UIauthSaveComposition;
-        DAW.cb.analyserFilled = data => UImasterAnalyser.draw(data);
+        DAW.cb.focusOn = UIcontrolsCurrentTimeController.UIcontrolsFocusOn;
+        DAW.cb.currentTime = UIcontrolsCurrentTimeController.UIcontrolsCurrentTime;
+        DAW.cb.clockUpdate = UIcontrolsCurrentTimeController.UIcontrolsClockUpdate;
+        DAW.cb.compositionOpened = UICompositionChangedControler.UIcompositionOpened;
+        DAW.cb.compositionClosed = UICompositionChangedControler.UIcompositionClosed;
+        DAW.cb.compositionChanged = UICompositionChangedControler.UIcompositionChanged;
+        DAW.cb.compositionDeleted = UICompositionChangedControler.UIcompositionDeleted;
+        DAW.cb.compositionAdded = UICompositionChangedControler.UIcompositionAdded;
+        DAW.cb.compositionLoading = UIcompositionsInitControlller.UIcompositionLoading;
+        DAW.cb.compositionSavedStatus = UICompositionChangedControler.UIcompositionSavedStatus;
+        DAW.cb.compositionSavingPromise = UIcompositionsInitControlller.UIauthSaveComposition;
+        DAW.cb.analyserFilled = data => UIauthInitController.UImasterAnalyserInit.draw(data);
         DAW.cb.pause =
             DAW.cb.stop = () => DOM.play.classList.remove("ico-pause");
         DAW.cb.play = () => DOM.play.classList.add("ico-pause");
 
         window.onresize();
 
-        UIauthGetMe();
+        UIauthInitController.UIauthGetMe();
         DAW.addCompositionsFromLocalStorage();
 
         if (!hash.has("cmp")) {
-            UIcompositionClickNewLocal();
+            UIauthInitController.UIcompositionClickNewLocal();
         } else {
             DAW.addCompositionByURL(hash.get("cmp"))
                 .catch(e => {

@@ -10,7 +10,7 @@ import {ProjectBar} from './projectBar'
 import {createTimeline} from '../../redux/actions/timelines/timelines'
 import {getActiveWorkspace} from '../../redux/selectors/workspaces'
 import {getOpenInstruments} from '../../redux/selectors/instruments'
-import '../core/core';
+import {bootloadder} from '../core/core';
 import {
   INSTRUMENT_WORKSPACE,
   EDITOR_WORKSPACE,
@@ -79,7 +79,7 @@ export class Dashboard extends Component {
     }
   }
   componentDidMount(){
-        this.bootloader = new bootloader();
+        this.bootloader = new bootloadder();
         this.bootloader.bootstrap();
   }
   

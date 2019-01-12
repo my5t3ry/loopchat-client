@@ -1,9 +1,12 @@
 "use strict";
 
-const UIpatternroll = new gsuiPatternroll();
 
-function UIpatternrollInit() {
+class UIpatternrollInitController {
+	
+static UIpatternrollInit() {
 	const grid = UIpatternroll;
+	const UIpatternroll = new gsuiPatternroll();
+
 
 	grid.setFontSize( 32 );
 	grid.setPxPerBeat( 40 );
@@ -44,4 +47,7 @@ function UIpatternrollInit() {
 	};
 	DOM.mainGridWrap.append( grid.rootElement );
 	grid.attached();
+}
+
+
 }

@@ -1,9 +1,14 @@
 "use strict";
 
-function UItitle() {
-	const name = DAW.get.name() || "GridSound";
+class UItitleControler {
 
-	document.title = DAW.compositionNeedSave()
-		? "*" + name
-		: name;
+    static UItitle() {
+        const name = DAW.get.name() || "GridSound";
+
+        document.title = DAW.compositionNeedSave()
+            ? "*" + name
+            : name;
+    }
+
+
 }

@@ -1,13 +1,16 @@
 "use strict";
 
-function UIshortcutsPopupInit() {
-	DOM.shortcuts.onclick = UIshortcutsPopupShow;
+class UIshortcutsPopupInitController {
+	
+static UIshortcutsPopupInit() {
+	DOM.shortcuts.onclick = UIshortcutsPopupInitController.UIshortcutsPopupShow;
 }
-
-function UIshortcutsPopupShow() {
+static UIshortcutsPopupShow() {
 	gsuiPopup.custom( {
 		title: "Keyboard / mouse shortcuts",
 		element: DOM.shortcutsPopupContent,
 	} );
 	return false;
+}
+
 }
