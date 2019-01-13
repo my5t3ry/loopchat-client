@@ -12,7 +12,7 @@ DAWCoreBuilder.prototype.clonePattern = function(id ) {
 
 DAWCoreBuilder .prototype._clonePattern = function( patId, pat ) {
 	const newPat = Object.assign( {}, pat ),
-		newKeys = DAWCore.objectDeepAssign( {}, this.get.keys( pat.keys ) ),
+		newKeys = DAWCoreBuilder.objectDeepAssign( {}, this.get.keys( pat.keys ) ),
 		newPatId = this._getNextIdOf( this.get.patterns() ),
 		newKeysId = this._getNextIdOf( this.get.keys() );
 

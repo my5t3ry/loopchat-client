@@ -16,7 +16,7 @@ DAWCoreBuilder.prototype.changePatternKeys = function(patId, keysObj ) {
 	}
 };
 
-DAWCore.prototype._changePatternKeysCalcDuration = function( pat, keys, keysObj ) {
+DAWCoreBuilder.prototype._changePatternKeysCalcDuration = function( pat, keys, keysObj ) {
 	const bPM = this.get.beatsPerMeasure(),
 		dur = Object.entries( keys ).reduce( ( dur, [ keyId, key ] ) => {
 			if ( keyId in keysObj ) {
@@ -42,7 +42,7 @@ DAWCore.prototype._changePatternKeysCalcDuration = function( pat, keys, keysObj 
 	return Math.max( 1, Math.ceil( dur2 / bPM ) ) * bPM;
 };
 
-DAWCore.prototype._changePatternKeys = function( patId, keysObj, pat, duration ) {
+DAWCoreBuilder.prototype._changePatternKeys = function( patId, keysObj, pat, duration ) {
 	const bPM = this.get.beatsPerMeasure(),
 		obj = { keys: { [ pat.keys ]: keysObj } };
 
@@ -61,7 +61,7 @@ DAWCore.prototype._changePatternKeys = function( patId, keysObj, pat, duration )
 			cmpDur = Math.ceil( cmpRealDur / bPM ) * bPM;
 
 		obj.patterns = { [ patId ]: { duration } };
-		if ( !DAWCore.objectIsEmpty( objBlocks ) ) {
+		if ( !DAWCoreBuilder.objectIsEmpty( objBlocks ) ) {
 			obj.blocks = objBlocks;
 		}
 		if ( Math.abs( cmpDur - this.get.duration() ) > .001 ) {

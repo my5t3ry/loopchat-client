@@ -9,8 +9,8 @@ DAWCoreBuilder.prototype.exportCompositionToJSON = function(id ) {
 		return {
 			name: ( cmp.name || "untitled" ) + ".gs",
 			url: this._exportCompositionToJSON(
-				DAWCore.Composition.epure(
-				DAWCore.objectDeepCopy( cmp ) ) )
+				DAWCoreBuilder.Composition.epure(
+				DAWCoreBuilder.objectDeepCopy( cmp ) ) )
 		};
 	}
 };
@@ -24,7 +24,7 @@ DAWCoreBuilder ._exportJSONTabs = {
 };
 
 DAWCoreBuilder.prototype._exportCompositionToJSON = function( cmp ) {
-	const delTabs = DAWCore._exportJSONTabs,
+	const delTabs = DAWCoreBuilder._exportJSONTabs,
 		reg = /^\t"(\w*)": {$/,
 		lines = JSON.stringify( cmp, null, "\t" ).split( "\n" );
 	let regTab,

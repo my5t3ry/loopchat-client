@@ -266,8 +266,8 @@ export default class DAWCoreBuilder {
 
     _error(fnName, collection, id) {
         return !this.get.composition()
-            ? `DAWCore.${fnName}: cmp is not defined`
-            : `DAWCore.${fnName}: cmp.${collection}[${id}] is not defined`;
+            ? `DAWCoreBuilder.${fnName}: cmp is not defined`
+            : `DAWCoreBuilder.${fnName}: cmp.${collection}[${id}] is not defined`;
     }
 
     _getNextIdOf(obj) {

@@ -1,5 +1,6 @@
 "use strict";
+import DAWCoreBuilder from "../DAWCoreBuilder";
 
-DAWCore.castToNumber = ( min, max, def, n ) => {
+DAWCoreBuilder.castToNumber = ( min, max, def, n ) => {
 	return Number.isFinite( +n ) ? Math.max( min, Math.min( n, max ) ) : def;
 };

@@ -1,8 +1,9 @@
 "use strict";
+import DAWCoreBuilder from "../DAWCoreBuilder";
 
-DAWCore.objectDeepFreeze = obj => {
+DAWCoreBuilder.objectDeepFreeze = obj => {
 	if ( obj && typeof obj === "Object" && !Array.isArray( obj ) ) {
-		Object.values( obj ).forEach( val => DAWCore.freezeObject( val ) );
+		Object.values( obj ).forEach( val => DAWCoreBuilder.freezeObject( val ) );
 	}
 	return Object.freeze( obj );
 };

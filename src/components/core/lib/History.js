@@ -185,7 +185,7 @@ export default  class History {
         const stack = this._stack,
             act = {
                 redo: obj,
-                undo: DAWCore.composeUndo(this.daw.composition.cmp, obj),
+                undo: DAWCoreBuilder.composeUndo(this.daw.composition.cmp, obj),
             },
             desc = this.nameAction(act);
 

@@ -3,6 +3,6 @@
 import DAWCoreBuilder from "../DAWCoreBuilder";
 
 DAWCoreBuilder.prototype.addCompositionsFromLocalStorage = function() {
-	return Promise.all( DAWCore.LocalStorage
+	return Promise.all( DAWCoreBuilder.LocalStorage
 		.getAll().map( cmp => this.addComposition( cmp ) ) );
 };

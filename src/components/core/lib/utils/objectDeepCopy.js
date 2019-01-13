@@ -1,3 +1,4 @@
 "use strict";
+import DAWCoreBuilder from "../DAWCoreBuilder";
 
-DAWCore.objectDeepCopy = obj => JSON.parse( JSON.stringify( obj ) );
+DAWCoreBuilder.objectDeepCopy = obj => JSON.parse( JSON.stringify( obj ) );

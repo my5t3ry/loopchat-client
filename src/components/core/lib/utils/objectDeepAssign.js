@@ -1,6 +1,7 @@
 "use strict";
+import DAWCoreBuilder from "../DAWCoreBuilder";
 
-DAWCore.objectDeepAssign = ( a, b ) => {
+DAWCoreBuilder.objectDeepAssign = ( a, b ) => {
 	const aFrozen = Object.isFrozen( a ),
 		aSealed = Object.isSealed( a );
 
@@ -11,9 +12,9 @@ DAWCore.objectDeepAssign = ( a, b ) => {
 			} else if ( typeof val !== "object" || val === null ) {
 				aFrozen || ( a[ k ] = val );
 			} else if ( typeof a[ k ] !== "object" ) {
-				aFrozen || ( a[ k ] = DAWCore.objectDeepCopy( val ) );
+				aFrozen || ( a[ k ] = DAWCoreBuilder.objectDeepCopy( val ) );
 			} else {
-				DAWCore.objectDeepAssign( a[ k ], val );
+				DAWCoreBuilder.objectDeepAssign( a[ k ], val );
 			}
 		}
 	} );

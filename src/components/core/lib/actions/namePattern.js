@@ -11,7 +11,7 @@ DAWCoreBuilder.prototype.namePattern = function(id, name ) {
 };
 
 DAWCoreBuilder.prototype._namePattern = function( id, pat, newName ) {
-	const name = DAWCore.trim2( newName );
+	const name = DAWCoreBuilder.trim2( newName );
 
 	if ( name && name !== pat.name ) {
 		this.compositionChange( { patterns: { [ id ]: { name } } } );

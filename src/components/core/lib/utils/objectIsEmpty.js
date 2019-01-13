@@ -1,6 +1,7 @@
 "use strict";
+import DAWCoreBuilder from "../DAWCoreBuilder";
 
-DAWCore.objectIsEmpty = obj => {
+DAWCoreBuilder.objectIsEmpty = obj => {
 	for ( const a in obj ) {
 		return false;
 	}

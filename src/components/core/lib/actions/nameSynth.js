@@ -11,7 +11,7 @@ DAWCoreBuilder.prototype.nameSynth = function(id, name ) {
 };
 
 DAWCoreBuilder.prototype._nameSynth = function( id, syn, newName ) {
-	const name = DAWCore.trim2( newName );
+	const name = DAWCoreBuilder.trim2( newName );
 
 	if ( name && name !== syn.name ) {
 		this.compositionChange( { synths: { [ id ]: { name } } } );

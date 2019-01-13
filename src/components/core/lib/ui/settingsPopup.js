@@ -46,8 +46,8 @@ export class  UIsettingsPopupInit {
 	if ( name !== cmp.name ) { cmpChange.name = name; }
 	if ( stepsPB !== cmp.stepsPerBeat ) { cmpChange.stepsPerBeat = stepsPB; }
 	if ( beatsPM !== cmp.beatsPerMeasure ) { cmpChange.beatsPerMeasure = beatsPM; }
-	if ( !DAWCore.objectIsEmpty( envChange ) ) { DAW.envChange( envChange ); }
-	if ( !DAWCore.objectIsEmpty( cmpChange ) ) { DAW.compositionChange( cmpChange ); }
+	if ( !DAWCoreBuilder.objectIsEmpty( envChange ) ) { DAW.envChange( envChange ); }
+	if ( !DAWCoreBuilder.objectIsEmpty( cmpChange ) ) { DAW.compositionChange( cmpChange ); }
 }
 
   UIsettingsPopupBPMTap() {

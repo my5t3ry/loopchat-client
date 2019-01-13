@@ -1,5 +1,6 @@
 import {UIdomInitController} from './ui/dom' ;
 import DAWCoreBuilder from "./DAWCoreBuilder";
+import gswaPeriodicWaves from "../../core/gs-wa/gswaPeriodicWaves/gswaPeriodicWaves"
 
 export class Bootloader {
 
@@ -88,7 +89,6 @@ export class Bootloader {
         UImasterAnalyserInit();
         UIshortcutsPopupInit();
     }
-
 
     checkDom() {
         return new Promise(function (resolve, reject) {

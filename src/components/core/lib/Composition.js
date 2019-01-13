@@ -11,7 +11,7 @@ export default class Composition {
                 act = this.daw.history.getCurrentAction(),
                 saved = act === this._actionSavedOn && !!cmp.savedAt;
 
-            DAWCore.objectDeepAssign(cmp, obj);
+            DAWCoreBuilder.objectDeepAssign(cmp, obj);
             this.change.fn.forEach((fn, attr) => {
                 if (typeof attr === "string") {
                     if (attr in obj) {
@@ -59,10 +59,10 @@ export default class Composition {
                         syn.setContext(this.daw.get.ctx());
                         syn.setBPM(this.daw.get.bpm());
                         syn.connect(this.daw.get.destination());
-                        DAWCore.objectDeepAssign(syn.data, synthObj);
+                        DAWCoreBuilder.objectDeepAssign(syn.data, synthObj);
                         this._synths.set(id, syn);
                     } else {
-                        DAWCore.objectDeepAssign(this._synths.get(id).data, synthObj);
+                        DAWCoreBuilder.objectDeepAssign(this._synths.get(id).data, synthObj);
                     }
                 });
             }],
@@ -161,9 +161,9 @@ export default class Composition {
 
     load(cmpOri) {
         return new Promise((res, rej) => {
-            const cmp = DAWCore.objectDeepCopy(cmpOri);
+            const cmp = DAWCoreBuilder.objectDeepCopy(cmpOri);
 
-            if (DAWCore.Composition.format(cmp)) {
+            if (DAWCoreBuilder.Composition.format(cmp)) {
                 this.unload();
                 res(cmp);
             } else {
@@ -181,7 +181,7 @@ export default class Composition {
                 blocks: {},
             });
             this._actionSavedOn = null;
-            this._saved = !opts.localSaving || DAWCore.LocalStorage.has(cmp.id) || !cmp.savedAt;
+            this._saved = !opts.localSaving || DAWCoreBuilder.LocalStorage.has(cmp.id) || !cmp.savedAt;
             this.daw._call("compositionSavedStatus", cmp, this._saved);
             return cmp;
         });
@@ -276,7 +276,7 @@ export default class Composition {
     assignBlocksChange(data) {
         const cmp = this.cmp;
 
-        DAWCore.objectDeepAssign(this._sched.data, data);
+        DAWCoreBuilder.objectDeepAssign(this._sched.data, data);
         if (cmp.loopA === false) {
             this._sched.setLoopBeat(0, cmp.duration || cmp.beatsPerMeasure);
         }
@@ -285,7 +285,7 @@ export default class Composition {
     assignPatternChange(pat, keys) {
         this._startedSched.forEach(sch => {
             if (sch.pattern === pat) {
-                DAWCore.objectDeepAssign(sch.data, keys);
+                DAWCoreBuilder.objectDeepAssign(sch.data, keys);
             }
         });
     }
@@ -389,8 +389,8 @@ export default class Composition {
         });
         Object.values(cmp.keys).forEach(keys => {
             Object.values(keys).forEach(k => {
-                k.pan = +DAWCore.castToNumber(-1, 1, 0, k.pan).toFixed(2);
-                k.gain = +DAWCore.castToNumber(0, 1, .8, k.gain).toFixed(2);
+                k.pan = +DAWCoreBuilder.castToNumber(-1, 1, 0, k.pan).toFixed(2);
+                k.gain = +DAWCoreBuilder.castToNumber(0, 1, .8, k.gain).toFixed(2);
                 k.selected = !!k.selected;
                 if (k.prev == null) {
                     k.prev = null;
@@ -403,7 +403,7 @@ export default class Composition {
                     if (window.gsuiKeys) {
                         k.key = window.gsuiKeys.keyStrToMidi(k.key);
                     } else {
-                        console.warn("DAWCore.Composition.format: gsuiKeys is needed to convert an old midi notation");
+                        console.warn("DAWCoreBuilder.Composition.format: gsuiKeys is needed to convert an old midi notation");
                         return false;
                     }
                 }

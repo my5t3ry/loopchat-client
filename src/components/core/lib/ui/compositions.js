@@ -86,7 +86,7 @@ export class  UIcompositionsInitControlller {
         root.dataset.id = cmp.id;
         html.bpm.textContent = cmp.bpm;
         html.name.textContent = cmp.name;
-        html.duration.textContent = DAWCore.time.beatToMinSec(cmp.duration, cmp.bpm);
+        html.duration.textContent = DAWCoreBuilder.time.beatToMinSec(cmp.duration, cmp.bpm);
         UIcompositions.set(cmp.id, html);
         (opt.localSaving
             ? DOM.localCmps

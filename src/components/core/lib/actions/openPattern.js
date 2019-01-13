@@ -10,6 +10,6 @@ DAWCoreBuilder.prototype.openPattern = function(id ) {
 		if ( synId !== this.get.synthOpened() ) {
 			obj.synthOpened = synId;
 		}
-		this.composition.change( obj, DAWCore.composeUndo( this.get.composition(), obj ) );
+		this.composition.change( obj, DAWCoreBuilder.composeUndo( this.get.composition(), obj ) );
 	}
 };

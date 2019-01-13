@@ -10,7 +10,7 @@ DAWCoreBuilder.prototype.openSynth = function(id ) {
 		if ( patId !== this.get.patternOpened() ) {
 			obj.patternOpened = patId;
 		}
-		this.composition.change( obj, DAWCore.composeUndo( this.get.composition(), obj ) );
+		this.composition.change( obj, DAWCoreBuilder.composeUndo( this.get.composition(), obj ) );
 	}
 };
 

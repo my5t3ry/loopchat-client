@@ -18,7 +18,7 @@ export class  UICompositionChangedControler {
 
         UIcompositionChanged.fn = new Map([
             [["tracks", "blocks"], function (obj) {
-                DAWCore.objectDeepAssign(UIpatternroll.data, obj);
+                DAWCoreBuilder.objectDeepAssign(UIpatternroll.data, obj);
             }],
             [["loopA", "loopB"], function () {
                 UIpatternroll.loop(
@@ -77,7 +77,7 @@ export class  UICompositionChangedControler {
             }],
             ["duration", function ({duration}) {
                 UIcompositions.get(DAW.get.id()).duration.textContent =
-                    DAWCore.time.beatToMinSec(duration, DAW.get.bpm());
+                    DAWCoreBuilder.time.beatToMinSec(duration, DAW.get.bpm());
             }],
             ["keys", function ({keys}) {
                 const pats = Object.entries(DAW.get.patterns()),
@@ -88,7 +88,7 @@ export class  UICompositionChangedControler {
                         if (patObj.keys === keysId) {
                             UIupdatePatternContent(patId);
                             if (patId === patOpened) {
-                                DAWCore.objectDeepAssign(UIpianoroll.data, keysObj);
+                                DAWCoreBuilder.objectDeepAssign(UIpianoroll.data, keysObj);
                             }
                             return true;
                         }
@@ -113,7 +113,7 @@ export class  UICompositionChangedControler {
                 DOM.pianorollBlock.export.classList.toggle("show", !pat);
                 if (pat) {
                     el.export.classList.add("selected");
-                    DAWCore.objectDeepAssign(UIpianoroll.data, DAW.get.keys(pat.keys));
+                    DAWCoreBuilder.objectDeepAssign(UIpianoroll.data, DAW.get.keys(pat.keys));
                     UIpianoroll.resetKey();
                     UIpianoroll.scrollToKeys();
                 } else {

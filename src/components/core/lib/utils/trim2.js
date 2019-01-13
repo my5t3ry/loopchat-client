@@ -1,3 +1,4 @@
 "use strict";
+import DAWCoreBuilder from "../DAWCoreBuilder";
 
-DAWCore.trim2 = str => str ? str.trim().replace( /\s+/g, " " ) : "";
+DAWCoreBuilder.trim2 = str => str ? str.trim().replace( /\s+/g, " " ) : "";

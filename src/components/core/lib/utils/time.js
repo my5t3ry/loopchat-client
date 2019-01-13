@@ -1,17 +1,18 @@
 "use strict";
+import DAWCoreBuilder from "../DAWCoreBuilder";
 
-DAWCore.time = {
+DAWCoreBuilder.time = {
 
 	// mixtes:
 	beatToMin( beat, bpm ) {
 		return ~~( beat / bpm );
 	},
 	beatToSec( beat, bpm ) {
-		return DAWCore.time._padZero( beat * 60 / bpm % 60 );
+		return DAWCoreBuilder.time._padZero( beat * 60 / bpm % 60 );
 	},
 	beatToMinSec( beat, bpm ) {
-		return DAWCore.time.beatToMin( beat, bpm ) + ":" +
-			DAWCore.time.beatToSec( beat, bpm );
+		return DAWCoreBuilder.time.beatToMin( beat, bpm ) + ":" +
+			DAWCoreBuilder.time.beatToSec( beat, bpm );
 	},
 
 	// beats:
@@ -19,10 +20,10 @@ DAWCore.time = {
 		return "" + ~~( beat + 1 );
 	},
 	beatToStep( beat, stepsPerBeat ) {
-		return DAWCore.time._padZero( beat % 1 * stepsPerBeat + 1 );
+		return DAWCoreBuilder.time._padZero( beat % 1 * stepsPerBeat + 1 );
 	},
 	beatToMStep( beat, stepsPerBeat ) {
-		return DAWCore.time._getMil( beat % 1 * stepsPerBeat );
+		return DAWCoreBuilder.time._getMil( beat % 1 * stepsPerBeat );
 	},
 
 	// seconds:
@@ -30,10 +31,10 @@ DAWCore.time = {
 		return "" + ~~( sec / 60 );
 	},
 	secToSec( sec ) {
-		return DAWCore.time._padZero( sec % 60 );
+		return DAWCoreBuilder.time._padZero( sec % 60 );
 	},
 	secToMs( sec ) {
-		return DAWCore.time._getMil( sec );
+		return DAWCoreBuilder.time._getMil( sec );
 	},
 
 	// private:

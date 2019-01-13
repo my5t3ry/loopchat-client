@@ -9,8 +9,8 @@ DAWCoreBuilder.prototype.exportCompositionToWAV = function() {
 		ctxOff = new OfflineAudioContext( 2, ~~( dur * smpRate ), smpRate );
 
 	this.stop();
-	if ( DAWCore._URLToRevoke ) {
-		URL.revokeObjectURL( DAWCore._URLToRevoke );
+	if ( DAWCoreBuilder._URLToRevoke ) {
+		URL.revokeObjectURL( DAWCoreBuilder._URLToRevoke );
 	}
 	this.setCtx( ctxOff );
 	this.composition.play();
@@ -20,7 +20,7 @@ DAWCoreBuilder.prototype.exportCompositionToWAV = function() {
 
 		this.composition.stop();
 		this.setCtx( ctx );
-		DAWCore._URLToRevoke = url;
+		DAWCoreBuilder._URLToRevoke = url;
 		return {
 			url,
 			name: ( this.get.name() || "untitled" ) + ".wav",

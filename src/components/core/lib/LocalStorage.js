@@ -3,7 +3,7 @@
 
 export default class LocalStorage {
 	put( id, cmp ) {
-		const cpy = DAWCore.objectDeepCopy( cmp );
+		const cpy = DAWCoreBuilder.objectDeepCopy( cmp );
 
 		Composition.epure( cpy );
 		localStorage.setItem( id, JSON.stringify( cpy ) );

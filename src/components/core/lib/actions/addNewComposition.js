@@ -4,5 +4,5 @@ import DAWCoreBuilder from "../DAWCoreBuilder";
 
 DAWCoreBuilder.prototype.addNewComposition = function(opt ) {
 	return this.addComposition(
-		DAWCore.json.composition( this.env, DAWCore.uuid() ), opt );
+		DAWCoreBuilder.json.composition( this.env, DAWCoreBuilder.uuid() ), opt );
 };
