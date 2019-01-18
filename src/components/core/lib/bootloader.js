@@ -1,6 +1,6 @@
 import {UIdomInitController} from './ui/dom' ;
 import DAWCoreBuilder from "./DAWCoreBuilder";
-import gswaPeriodicWaves from "../../core/gs-wa/gswaPeriodicWaves/gswaPeriodicWaves"
+import {gswaPeriodicWaves} from "../../core/gs-wa/gswaPeriodicWaves/gswaPeriodicWaves"
 
 export class Bootloader {
 
@@ -34,9 +34,9 @@ export class Bootloader {
     }
 
     initBindings(DAW, DOM, hash) {
-        gswaPeriodicWaves.forEach((w, name) => (
-            thisgsuiPeriodicWave.addWave(name, w.real, w.imag)
-        ));
+        // gswaPeriodicWaves.forEach((w, name) => (
+        //     thisgsuiPeriodicWave.addWave(name, w.real, w.imag)
+        // ));
         window.onkeyup = UIkeyboardUp;
         window.onkeydown = UIkeyboardDown;
         window.onbeforeunload = UIcompositionBeforeUnload;
