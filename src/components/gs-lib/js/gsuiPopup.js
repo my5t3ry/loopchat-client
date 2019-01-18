@@ -1,6 +1,6 @@
 "use strict";
 
-class gsuiPopup {
+export default class gsuiPopup {
 	static alert( title, msg, ok ) {
 		gsuiPopup._init();
 		gsuiPopup._emptyCnt();

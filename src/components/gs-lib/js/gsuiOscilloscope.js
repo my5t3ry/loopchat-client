@@ -1,6 +1,6 @@
 "use strict";
 
-class gsuiOscilloscope {
+export default class gsuiOscilloscope {
 	constructor( canvas ) {
 		this.rootElement = canvas || document.createElement( "canvas" );
 		this.rootElement.classList.add( "gsuiOscilloscope" );

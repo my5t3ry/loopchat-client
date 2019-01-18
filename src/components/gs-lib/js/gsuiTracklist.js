@@ -1,6 +1,7 @@
 "use strict";
+import gsuiTrack from "./gsuiTrack";
 
-class gsuiTracklist {
+export default class gsuiTracklist {
 	constructor() {
 
 		gsuiTracklist.template = document.querySelector( "#gsuiTracklist-template" );

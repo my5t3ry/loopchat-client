@@ -1,13 +1,11 @@
 "use strict";
 
-export class UImasterAnalyserInitController {
+import {gsuiSpectrum} from "../../../gs-lib/js/gsuiSpectrum";
 
-    UImasterAnalyserInit() {
-        const spc = new gsuiSpectrum();
+export function UImasterAnalyserInit() {
+	const spc = new gsuiSpectrum();
 
-        spc.setResolution(512);
-        DOM.analyser.append(spc.rootElement);
-        window.UImasterAnalyser = spc;
-    }
-
+	spc.setResolution( 512 );
+	DOM.analyser.append( spc.rootElement );
+	window.UImasterAnalyser = spc;
 }

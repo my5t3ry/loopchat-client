@@ -1,6 +1,6 @@
 "use strict";
 
-class gsuiTrack {
+export default class gsuiTrack {
 	constructor() {
 
 		gsuiTrack.template = document.querySelector( "#gsuiTrack-template" );

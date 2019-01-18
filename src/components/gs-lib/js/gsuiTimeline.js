@@ -1,7 +1,10 @@
 "use strict";
 
-class gsuiTimeline {
+export default class gsuiTimeline {
 	constructor() {
+
+		gsuiTimeline.template = document.querySelector("#gsuiTimeline-template");
+		
 		const root = gsuiTimeline.template.cloneNode( true ),
 			dom = {};
 

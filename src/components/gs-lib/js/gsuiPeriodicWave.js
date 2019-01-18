@@ -2,7 +2,7 @@
 
 window.SVGURL = "http://www.w3.org/2000/svg";
 
-class gsuiPeriodicWave {
+export default class gsuiPeriodicWave {
 	constructor( svg ) {
 		const root = svg || document.createElementNS( SVGURL, "svg" );
 

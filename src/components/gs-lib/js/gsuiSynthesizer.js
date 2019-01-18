@@ -1,6 +1,6 @@
 "use strict";
 
-class gsuiSynthesizer {
+export default class gsuiSynthesizer {
 	constructor() {
 
 		gsuiSynthesizer.template = document.querySelector( "#gsuiSynthesizer-template" );

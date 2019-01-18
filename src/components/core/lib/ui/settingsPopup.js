@@ -1,13 +1,11 @@
 "use strict";
 
-export class  UIsettingsPopupInit {
-	
-  UIsettingsPopupInit() {
-	DOM.settings.onclick = UIsettingsPopupInit.UIsettingsPopupShow;
-	DOM.settingsBPMTap.onclick = UUIsettingsPopupInit.IsettingsPopupBPMTap;
+export function UIsettingsPopupInit() {
+	DOM.settings.onclick = UIsettingsPopupShow;
+	DOM.settingsBPMTap.onclick = UIsettingsPopupBPMTap;
 }
 
-  UIsettingsPopupShow() {
+export function UIsettingsPopupShow() {
 	const cmp = DAW.get.composition(),
 		bpmTap = DOM.settingsBPMTap;
 
@@ -29,7 +27,7 @@ export class  UIsettingsPopupInit {
 	return false;
 }
 
-  UIsettingsPopupSubmit() {
+export function UIsettingsPopupSubmit() {
 	const cmp = DAW.get.composition(),
 		envChange = {},
 		cmpChange = {},
@@ -46,11 +44,11 @@ export class  UIsettingsPopupInit {
 	if ( name !== cmp.name ) { cmpChange.name = name; }
 	if ( stepsPB !== cmp.stepsPerBeat ) { cmpChange.stepsPerBeat = stepsPB; }
 	if ( beatsPM !== cmp.beatsPerMeasure ) { cmpChange.beatsPerMeasure = beatsPM; }
-	if ( !DAWCoreBuilder.objectIsEmpty( envChange ) ) { DAW.envChange( envChange ); }
-	if ( !DAWCoreBuilder.objectIsEmpty( cmpChange ) ) { DAW.compositionChange( cmpChange ); }
+	if ( !DAWCore.objectIsEmpty( envChange ) ) { DAW.envChange( envChange ); }
+	if ( !DAWCore.objectIsEmpty( cmpChange ) ) { DAW.compositionChange( cmpChange ); }
 }
 
-  UIsettingsPopupBPMTap() {
+export function UIsettingsPopupBPMTap() {
 	const time = Date.now(),
 		bpmTap = DOM.settingsBPMTap;
 
@@ -76,7 +74,4 @@ export class  UIsettingsPopupInit {
 	}
 	bpmTap.timeBefore = time;
 	return false;
-}
-
-
 }

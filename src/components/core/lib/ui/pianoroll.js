@@ -1,50 +1,47 @@
 "use strict";
-import gsuiPianoroll from '../../../gs-lib/js/gsuiPianoroll'
 
-export class UIpianorollIniController {
+import gsuiPianoroll from "../../../gs-lib/js/gsuiPianoroll";
 
-    UIpianorollInit() {
-        const pia = UIpianoroll;
-        const UIpianoroll = new gsuiPianoroll();
+export function UIpianorollInit() {
 
-        pia.octaves(1, 7);
-        pia.setPxPerBeat(90);
-        pia.setFontSize(20);
-        pia.onchange = obj => DAW.changePatternKeys(DAW.get.patternOpened(), obj);
-        pia.onchangeLoop = (looping, a, b) => looping
-            ? DAW.pianoroll.setLoop(a, b)
-            : DAW.pianoroll.clearLoop();
-        pia.onchangeCurrentTime = t => DAW.pianoroll.setCurrentTime(t);
-        pia.rootElement.onfocus = () => DAW.pianorollFocus();
-        pia.uiKeys.onkeydown = midi => DAW.pianoroll.liveKeydown(midi);
-        pia.uiKeys.onkeyup = midi => DAW.pianoroll.liveKeyup(midi);
-        DOM.pianorollName.onclick = () => {
-            const id = DAW.get.patternOpened(),
-                name = DOM.pianorollName.textContent;
+	const UIpianoroll = new gsuiPianoroll();
+	const pia = UIpianoroll;
 
-            gsuiPopup.prompt("Rename pattern", "", name, "Rename")
-                .then(name => DAW.namePattern(id, name));
-        };
-        DOM.pianorollBlock.export.classList.add("show");
-        DOM.keysGridWrap.append(pia.rootElement);
-        pia.attached();
-    }
+	pia.octaves( 1, 7 );
+	pia.setPxPerBeat( 90 );
+	pia.setFontSize( 20 );
+	pia.onchange = obj => DAW.changePatternKeys( DAW.get.patternOpened(), obj );
+	pia.onchangeLoop = ( looping, a, b ) => looping
+		? DAW.pianoroll.setLoop( a, b )
+		: DAW.pianoroll.clearLoop();
+	pia.onchangeCurrentTime = t => DAW.pianoroll.setCurrentTime( t );
+	pia.rootElement.onfocus = () => DAW.pianorollFocus();
+	pia.uiKeys.onkeydown = midi => DAW.pianoroll.liveKeydown( midi );
+	pia.uiKeys.onkeyup = midi => DAW.pianoroll.liveKeyup( midi );
+	DOM.pianorollName.onclick = () => {
+		const id = DAW.get.patternOpened(),
+			name = DOM.pianorollName.textContent;
 
-    UIpianorollKeyboardEvent(status, e) {
-        const uiKeys = UIpianoroll.uiKeys,
-            midi = uiKeys.getMidiKeyFromKeyboard(e);
+		gsuiPopup.prompt( "Rename pattern", "", name, "Rename" )
+			.then( name => DAW.namePattern( id, name ) );
+	};
+	DOM.pianorollBlock.classList.add( "show" );
+	DOM.keysGridWrap.append( pia.rootElement );
+	pia.attached();
+}
 
-        if (midi) {
-            if (status) {
-                uiKeys.midiKeyDown(midi);
-                uiKeys.onkeydown(midi);
-            } else {
-                uiKeys.midiKeyUp(midi);
-                uiKeys.onkeyup(midi);
-            }
-            return true;
-        }
-    }
+export function UIpianorollKeyboardEvent( status, e ) {
+	const uiKeys = UIpianoroll.uiKeys,
+		midi = uiKeys.getMidiKeyFromKeyboard( e );
 
-
+	if ( midi ) {
+		if ( status ) {
+			uiKeys.midiKeyDown( midi );
+			uiKeys.onkeydown( midi );
+		} else {
+			uiKeys.midiKeyUp( midi );
+			uiKeys.onkeyup( midi );
+		}
+		return true;
+	}
 }

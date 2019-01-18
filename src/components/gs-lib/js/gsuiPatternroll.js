@@ -2,8 +2,9 @@
 
 
 import gsuiBlocksManager from "./gsuiBlocksManager";
+import gsuiTracklist from "./gsuiTracklist";
 
-class gsuiPatternroll extends gsuiBlocksManager {
+export default class gsuiPatternroll extends gsuiBlocksManager {
     constructor() {
 
         gsuiPatternroll.template = document.querySelector("#gsuiPatternroll-template");

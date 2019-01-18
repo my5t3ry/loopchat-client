@@ -1,6 +1,8 @@
 "use strict";
 
-class gsuiSliderGroup {
+import gsuiBeatlines from "./gsuiBeatlines";
+
+export default class gsuiSliderGroup {
 	constructor() {
 
 		gsuiSliderGroup.template = document.querySelector( "#gsuiSliderGroup-template" );

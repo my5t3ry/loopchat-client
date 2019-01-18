@@ -1,6 +1,9 @@
 "use strict";
 
-class gsuiOscillator {
+import gsuiPeriodicWave from "./gsuiPeriodicWave";
+import gsuiSlider from "./gsuiSlider";
+
+export default class gsuiOscillator {
 	constructor() {
 
 		gsuiOscillator.attrSliders = [ "gain", "pan", "detune" ];

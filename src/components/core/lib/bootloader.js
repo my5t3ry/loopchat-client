@@ -1,6 +1,24 @@
-import {UIdomInitController} from './ui/dom' ;
+import {UIdomInit} from './ui/dom' ;
 import DAWCoreBuilder from "./DAWCoreBuilder";
 import {gswaPeriodicWaves} from "../../core/gs-wa/gswaPeriodicWaves/gswaPeriodicWaves"
+import {UIkeyboardDown, UIkeyboardUp} from "./ui/keyboard";
+import {UIdrop} from "./ui/drop";
+import {UIcontrolsClockUpdate, UIcontrolsCurrentTime, UIcontrolsFocusOn, UIcontrolsInit} from "./ui/controls";
+import {UIcompositionChanged} from "./ui/compositionChanged";
+import {UIcompositionAdded, UIcompositionBeforeUnload, UIcompositionClickNewLocal, UIcompositionClosed, UIcompositionDeleted, UIcompositionLoading, UIcompositionOpened, UIcompositionSavedStatus, UIcompositionsInit} from "./ui/compositions";
+import {UIauthGetMe, UIauthInit, UIauthSaveComposition} from "./ui/auth";
+import {UIcookieInit} from "./ui/cookie";
+import {UIhistoryInit} from "./ui/history";
+import {UIpatternsInit} from "./ui/patterns";
+import {UIpianorollInit} from "./ui/pianoroll";
+import {UIpatternrollInit} from "./ui/patternroll";
+import {UIrenderPopupInit} from "./ui/renderPopup";
+import {UIsettingsPopupInit} from "./ui/settingsPopup";
+import {UImasterAnalyserInit} from "./ui/masterAnalyserInit";
+import {UIshortcutsPopupInit} from "./ui/shortcutsPopup";
+import gsuiPatternroll from "../../gs-lib/js/gsuiPatternroll";
+import gsuiPianoroll from "../../gs-lib/js/gsuiPianoroll";
+import gsuiSynthesizer from "../../gs-lib/js/gsuiSynthesizer";
 
 export class Bootloader {
 
@@ -8,14 +26,14 @@ export class Bootloader {
     }
 
     async bootstrap() {
+        await require('./ui.js');
         this.checkDom().then(function () {
             this.boot();
         }.bind(this))
     }
 
     async boot() {
-        const DOM = new UIdomInitController().UIdomInit();
-        window.DOM = DOM;
+         UIdomInit();
         const DAW = new DAWCoreBuilder(),
             hash = new Map(location.hash
                 .substr(1)
@@ -27,7 +45,6 @@ export class Bootloader {
         DAW.initPianoroll();
         await require('../../gs-lib/gs-lib');
         await require('./actions.js');
-        await require('./ui.js');
         await require('./utils.js');
         this.initBindings(DAW, DOM, hash);
         this.initUi();
@@ -57,7 +74,6 @@ export class Bootloader {
         DAW.cb.pause =
             DAW.cb.stop = () => DOM.play.classList.remove("ico-pause");
         DAW.cb.play = () => DOM.play.classList.add("ico-pause");
-        window.onresize();
         UIauthGetMe();
         DAW.addCompositionsFromLocalStorage();
 
@@ -75,7 +91,6 @@ export class Bootloader {
     }
 
     initUi() {
-        UIdomInit();
         UIauthInit();
         UIcookieInit();
         UIhistoryInit();

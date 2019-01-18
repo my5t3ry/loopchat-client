@@ -1,6 +1,6 @@
 "use strict";
 
-function gsuiSpectrum( canvas ) {
+export function gsuiSpectrum( canvas ) {
 	this.rootElement = canvas || document.createElement( "canvas" );
 	this.rootElement.classList.add( "gsuiSpectrum" );
 	this.ctx = this.rootElement.getContext( "2d" );

@@ -2,7 +2,7 @@
 
 window.SVGURL = "http://www.w3.org/2000/svg";
 
-function gsuiRectMatrix() {
+export function gsuiRectMatrix() {
 	var root = document.createElementNS( SVGURL, "svg" );
 
 	this.rootElement = root;

@@ -15,6 +15,7 @@ import "./ui/patterns.js";
 import "./ui/pianoroll.js";
 import "./ui/renderPopup.js";
 import "./ui/settingsPopup.js";
+import "./ui/mixer.js";
 import "./ui/shortcutsPopup.js";
 import "./ui/synth.js";
 import "./ui/synths.js";

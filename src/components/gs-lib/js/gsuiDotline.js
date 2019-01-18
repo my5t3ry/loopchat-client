@@ -2,7 +2,7 @@
 
 window.SVGURL = "http://www.w3.org/2000/svg";
 
-class gsuiDotline {
+export default class gsuiDotline {
 	constructor() {
 
 		document.addEventListener( "mousemove", e => {

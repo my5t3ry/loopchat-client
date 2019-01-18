@@ -1,6 +1,6 @@
 "use strict";
 
-class gsuiBeatlines {
+export default class gsuiBeatlines {
 	constructor( el ) {
 		this.rootElement = el;
 		this._beatsPerMeasure =

@@ -1,4 +1,7 @@
 "use strict";
+import gsuiPanels from "./gsuiPanels"
+import gsuiTimeline from "./gsuiTimeline"
+import gsuiBeatlines from "./gsuiBeatlines"
 
 export default class gsuiBlocksManager {
 	constructor( root ) {

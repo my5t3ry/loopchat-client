@@ -2,7 +2,7 @@
 
 window.SVGURL = "http://www.w3.org/2000/svg";
 
-function gsuiWaveform( svg ) {
+export function gsuiWaveform( svg ) {
 	this.rootElement = svg || document.createElementNS( SVGURL, "svg" );
 	this.rootElement.setAttribute( "preserveAspectRatio", "none" );
 	this.rootElement.classList.add( "gsuiWaveform" );

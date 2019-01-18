@@ -1,6 +1,6 @@
 "use strict";
 
-class gsuiDragline {
+export default class gsuiDragline {
 	constructor() {
 
 		gsuiDragline.template = document.querySelector( "#gsuiDragline-template" );

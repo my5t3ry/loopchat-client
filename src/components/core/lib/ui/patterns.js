@@ -1,18 +1,17 @@
 "use strict";
 
 window.UIpatterns = new Map();
-export class  UIaddPatternControlleer {
-	
-  UIaddPattern( id, obj ) {
+
+export function UIaddPattern( id, obj ) {
 	const pat = DOM.pattern.cloneNode( true );
 
 	pat.dataset.id = id;
 	UIpatterns.set( id, pat );
-	  this.UInamePattern( id, obj.name );
-	  this.UIchangePatternSynth( id, obj.synth );
+	UInamePattern( id, obj.name );
+	UIchangePatternSynth( id, obj.synth );
 }
 
-  UInamePattern( id, name ) {
+export function UInamePattern( id, name ) {
 	UIpatterns.get( id ).querySelector( ".pattern-name" ).textContent = name;
 	UIpatternroll.getBlocks().forEach( blc => {
 		if ( blc.dataset.pattern === id ) {
@@ -24,12 +23,12 @@ export class  UIaddPatternControlleer {
 	}
 }
 
-  UIchangePatternSynth( patId, synthId ) {
+export function UIchangePatternSynth( patId, synthId ) {
 	UIsynths.get( synthId ).querySelector( ".synth-patterns" )
 		.prepend( UIpatterns.get( patId ) );
 }
 
-  UIupdatePatternContent( id ) {
+export function UIupdatePatternContent( id ) {
 	const get = DAW.get,
 		elPat = UIpatterns.get( id );
 
@@ -52,7 +51,7 @@ export class  UIaddPatternControlleer {
 	} );
 }
 
-  UIpatternsInit() {
+export function UIpatternsInit() {
 	const fnClick = new Map( [
 			[ undefined, id => DAW.openPattern( id ) ],
 			[ "remove", id => DAW.removePattern( id ) ],
@@ -78,7 +77,4 @@ export class  UIaddPatternControlleer {
 			e.dataTransfer.setData( "text", `${ id }:${ dur }` );
 		}
 	};
-}
-
-
 }

@@ -1,6 +1,6 @@
 "use strict";
 
-class gsuiSlider {
+export default class gsuiSlider {
 	constructor() {
 
 		gsuiSlider.template = document.querySelector( "#gsuiSlider-template" );

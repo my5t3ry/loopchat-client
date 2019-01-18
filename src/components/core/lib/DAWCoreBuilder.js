@@ -12,8 +12,8 @@ export default class DAWCoreBuilder {
         DAWCoreBuilder.Compositon = Composition;
         DAWCoreBuilder.History = History;
         DAWCoreBuilder.Pianoroll = Pianoroll;
-        DAWCoreBuilder.LocalStorage = LocalStorage;
-        this.json = {};
+        DAWCoreBuilder.LocalStorage = new LocalStorage();
+        DAWCoreBuilder.json = {};
         this.env = Object.seal({
             def_bpm: 120,
             def_appGain: .5,
@@ -26,7 +26,7 @@ export default class DAWCoreBuilder {
             clockSteps: false,
         });
 
-        this.json.composition = (env, id) => {
+        DAWCoreBuilder.json.composition = (env, id) => {
             const tracks = {};
 
             for (let i = 0; i < env.def_nbTracks; ++i) {
@@ -58,7 +58,7 @@ export default class DAWCoreBuilder {
                 keys: {"0": {}},
             };
         };
-        this.json.synth = name => ({
+        DAWCoreBuilder.json.synth = name => ({
             name,
             oscillators: {
                 "0": {

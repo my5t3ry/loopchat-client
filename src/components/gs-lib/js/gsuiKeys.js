@@ -1,6 +1,6 @@
 "use strict";
 
-function gsuiKeys() {
+export default function gsuiKeys() {
 
 	gsuiKeys.template = document.querySelector( "#gsuiKeys-octave-template" );
 	gsuiKeys.template.remove();

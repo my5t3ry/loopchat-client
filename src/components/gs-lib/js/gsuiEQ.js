@@ -1,6 +1,8 @@
 "use strict";
 
-function gsuiEQ() {
+import {gsuiSpectrum} from "./gsuiSpectrum";
+
+export default function gsuiEQ() {
 	var root = this._clone(),
 		canvas = root.querySelector( "canvas" );
 

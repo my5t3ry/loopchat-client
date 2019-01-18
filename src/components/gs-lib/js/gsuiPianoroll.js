@@ -1,8 +1,10 @@
 "use strict";
 
 import gsuiBlocksManager from "./gsuiBlocksManager";
+import gsuiSliderGroup from "./gsuiSliderGroup";
+import gsuiKeys from "./gsuiKeys";
 
-class gsuiPianoroll extends gsuiBlocksManager {
+export default class gsuiPianoroll extends gsuiBlocksManager {
     constructor() {
 
         gsuiPianoroll.noteNames = {

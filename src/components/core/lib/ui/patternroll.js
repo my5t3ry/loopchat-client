@@ -1,12 +1,11 @@
 "use strict";
 
+import gsuiPatternroll from "../../../gs-lib/js/gsuiPatternroll";
 
-export class  UIpatternrollInitController {
-	
-  UIpatternrollInit() {
-	const grid = UIpatternroll;
+export function UIpatternrollInit() {
+
 	const UIpatternroll = new gsuiPatternroll();
-
+	const grid = UIpatternroll;
 
 	grid.setFontSize( 32 );
 	grid.setPxPerBeat( 40 );
@@ -47,7 +46,4 @@ export class  UIpatternrollInitController {
 	};
 	DOM.mainGridWrap.append( grid.rootElement );
 	grid.attached();
-}
-
-
 }

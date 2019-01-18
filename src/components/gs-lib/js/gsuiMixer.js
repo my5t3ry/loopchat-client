@@ -1,6 +1,6 @@
 "use strict";
 
-class gsuiMixer {
+export default class gsuiMixer {
 	constructor() {
 
 		gsuiMixer.template = document.querySelector( "#gsuiMixer-template" );
