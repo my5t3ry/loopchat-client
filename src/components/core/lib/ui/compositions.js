@@ -2,19 +2,22 @@
 
 import {UIopenPopupShow} from "./openPopup";
 import DAWCoreBuilder from "../DAWCoreBuilder";
+import {Map as UIsynths, Map as UIpatterns} from "immutable";
+import {UItitle} from "./title";
+import {UIsynthsExpandSynth} from "./synths";
 
 
 const UIcompositions = Object.seal({
     cloud: new Map(),
     local: new Map(),
     get(cmp) {
-        return this.local.get(cmp.id);
+        return this["local"].get(cmp.id);
     },
     set(cmp, html) {
-        this.local.set(cmp.id, html);
+        this["local"].set(cmp.id, html);
     },
     delete(cmp) {
-        this.local.delete(cmp.id);
+        this["local"].delete(cmp.id);
     },
 });
 
@@ -97,7 +100,10 @@ export function UIcompositionAdded(cmp) {
     html.name.textContent = cmp.name;
     html.duration.textContent = DAWCoreBuilder.time.beatToMinSec(cmp.duration, cmp.bpm);
     UIcompositions.set(cmp, html);
+    
+     DOM.cmp.append(root);
 }
+
 export function UIcompositionClosed(cmp) {
     UIcompositions.get(cmp).root.classList.remove("cmp-loaded");
     UIpatternroll.empty();
@@ -119,7 +125,7 @@ export function UIcompositionClickNewLocal() {
             ? DAW.addNewComposition()
             : gsuiPopup.confirm("Warning", "Are you sure you want to discard unsaved works")
                 .then(b => b && DAW.addNewComposition())
-    ).then(cmp => cmp && DAW.openComposition("local", cmp.id));
+    ).then(cmp => cmp && DAW.openComposition( cmp.id));
     return false;
 }
 

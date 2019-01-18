@@ -109,6 +109,7 @@ export class Bootloader {
         return new Promise(function (resolve, reject) {
             function step() {
                 if (document.querySelector("#gsuiPatternroll-template") != null &&
+                    document.querySelector("#gsuiTracklist-template") != null &&
                     document.querySelector("#gsuiTimeline-template") != null &&
                     document.querySelector("#gsuiSliderGroup-slider-template") != null
                 ) {

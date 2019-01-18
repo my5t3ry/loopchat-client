@@ -5,6 +5,7 @@ import gsuiPianoroll from "../../../gs-lib/js/gsuiPianoroll";
 export function UIpianorollInit() {
 
 	const UIpianoroll = new gsuiPianoroll();
+	window.pianoroll  =UIpianoroll;
 	const pia = UIpianoroll;
 
 	pia.octaves( 1, 7 );

@@ -1,18 +1,20 @@
 "use strict";
 import gswaScheduler from '../gs-wa/gswaScheduler/gswaScheduler'
+import gswaSynth from '../gs-wa/gswaSynth/gswaSynth'
+import DAWCoreBuilder from '../lib/DAWCoreBuilder'
 
 export default class Composition {
 
     constructor(daw) {
         const sch = new gswaScheduler();
         this.prototype = {};
-        this.prototype.change = function (obj, prevObj) {
+        this.change = function (obj, prevObj) {
             const cmp = this.cmp,
                 act = this.daw.history.getCurrentAction(),
                 saved = act === this._actionSavedOn && !!cmp.savedAt;
 
             DAWCoreBuilder.objectDeepAssign(cmp, obj);
-            this.change.fn.forEach((fn, attr) => {
+            this.fn.forEach((fn, attr) => {
                 if (typeof attr === "string") {
                     if (attr in obj) {
                         fn.call(this, obj, prevObj);
@@ -30,7 +32,7 @@ export default class Composition {
             return obj;
         };
 
-        this.prototype.fn = new Map([
+        this.fn = new Map([
             ["bpm", function ({bpm}) {
                 this._sched.setBPM(bpm);
                 this._synths.forEach(syn => syn.setBPM(bpm));

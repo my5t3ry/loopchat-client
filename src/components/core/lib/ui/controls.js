@@ -13,7 +13,7 @@ export function UIcontrolsFocusOn( subject, b ) {
 		DOM.togglePlay.classList.toggle( "after", !onCmp );
 		DOM.mainGridWrap.classList.toggle( "focus", onCmp );
 		DOM.keysGridWrap.classList.toggle( "focus", !onCmp );
-		( onCmp ? UIpatternroll : UIpianoroll ).rootElement.focus();
+		( onCmp ? window.patterroll : window.pianoroll ).rootElement.focus();
 	}
 }
 

@@ -1,6 +1,6 @@
 "use strict";
 
-class gswaSynth {
+export default class gswaSynth {
 	constructor() {
 		this._nodes = new Map();
 		this._startedKeys = new Map();

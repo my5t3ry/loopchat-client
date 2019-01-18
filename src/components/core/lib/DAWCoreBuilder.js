@@ -9,11 +9,13 @@ import History from "../lib/History";
 export default class DAWCoreBuilder {
     constructor() {
         this.cb = {};
-        DAWCoreBuilder.Compositon = Composition;
-        DAWCoreBuilder.History = History;
+
+        DAWCoreBuilder.Composition = new Composition();
+        DAWCoreBuilder.History = new History();
         DAWCoreBuilder.Pianoroll = Pianoroll;
         DAWCoreBuilder.LocalStorage = new LocalStorage();
         DAWCoreBuilder.json = {};
+       
         this.env = Object.seal({
             def_bpm: 120,
             def_appGain: .5,
@@ -281,5 +283,7 @@ export default class DAWCoreBuilder {
             this.get[collection]()).map(obj => obj.name));
     }
 }
+
+
 
 

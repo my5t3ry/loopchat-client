@@ -1,4 +1,10 @@
 "use strict";
+import DAWCoreBuilder from "../DAWCoreBuilder";
+import {Map as UIpatterns, Map as UIsynths} from "immutable";
+import {UIsynthsAddSynth, UIsynthsNameSynth} from "./synths";
+import {UIsynthChange} from "./synth";
+import {UIaddPattern, UIchangePatternSynth, UInamePattern, UIupdatePatternContent} from "./patterns";
+import {UItitle} from "./title";
 
 export function UIcompositionChanged( obj, prevObj ) {
 	const cmp = DAW.get.composition();
@@ -17,7 +23,7 @@ export function UIcompositionChanged( obj, prevObj ) {
 
 UIcompositionChanged.fn = new Map( [
 	[ [ "tracks", "blocks" ], function( obj ) {
-		DAWCore.objectDeepAssign( UIpatternroll.data, obj );
+		DAWCoreBuilder.objectDeepAssign( window.patterroll.data, obj );
 	} ],
 	[ [ "loopA", "loopB" ], function() {
 		UIpatternroll.loop(
@@ -76,7 +82,7 @@ UIcompositionChanged.fn = new Map( [
 	} ],
 	[ "duration", function( { duration } ) {
 		UIcompositions.get( DAW.get.id() ).duration.textContent =
-			DAWCore.time.beatToMinSec( duration, DAW.get.bpm() );
+			DAWCoreBuilder.time.beatToMinSec( duration, DAW.get.bpm() );
 	} ],
 	[ "keys", function( { keys } ) {
 		const pats = Object.entries( DAW.get.patterns() ),
@@ -87,7 +93,7 @@ UIcompositionChanged.fn = new Map( [
 				if ( patObj.keys === keysId ) {
 					UIupdatePatternContent( patId );
 					if ( patId === patOpened ) {
-						DAWCore.objectDeepAssign( UIpianoroll.data, keysObj );
+						DAWCoreBuilder.objectDeepAssign( UIpianoroll.data, keysObj );
 					}
 					return true;
 				}
@@ -112,7 +118,7 @@ UIcompositionChanged.fn = new Map( [
 		DOM.pianorollBlock.classList.toggle( "show", !pat );
 		if ( pat ) {
 			el.classList.add( "selected" );
-			DAWCore.objectDeepAssign( UIpianoroll.data, DAW.get.keys( pat.keys ) );
+			DAWCoreBuilder.objectDeepAssign( UIpianoroll.data, DAW.get.keys( pat.keys ) );
 			UIpianoroll.resetKey();
 			UIpianoroll.scrollToKeys();
 		} else {

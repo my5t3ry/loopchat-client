@@ -5,6 +5,7 @@ import gsuiPatternroll from "../../../gs-lib/js/gsuiPatternroll";
 export function UIpatternrollInit() {
 
 	const UIpatternroll = new gsuiPatternroll();
+	window.patterroll  =UIpatternroll;
 	const grid = UIpatternroll;
 
 	grid.setFontSize( 32 );
