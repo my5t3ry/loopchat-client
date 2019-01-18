@@ -3,8 +3,6 @@
 export default class gsuiTrack {
 	constructor() {
 
-		gsuiTrack.template = document.querySelector( "#gsuiTrack-template" );
-
 		const root = gsuiTrack.template.cloneNode( true );
 
 		this.onchange =
@@ -84,3 +82,4 @@ export default class gsuiTrack {
 		};
 	}
 }
+

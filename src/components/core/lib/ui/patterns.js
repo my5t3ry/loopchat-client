@@ -1,6 +1,8 @@
 "use strict";
 
-window.UIpatterns = new Map();
+import {uiKeysToRects} from "./keysToRects";
+import {gsuiRectMatrix} from "../../../gs-lib/js/gsuiRectMatrix";
+
 
 export function UIaddPattern( id, obj ) {
 	const pat = DOM.pattern.cloneNode( true );
@@ -13,7 +15,7 @@ export function UIaddPattern( id, obj ) {
 
 export function UInamePattern( id, name ) {
 	UIpatterns.get( id ).querySelector( ".pattern-name" ).textContent = name;
-	UIpatternroll.getBlocks().forEach( blc => {
+	window.patterroll.getBlocks().forEach( blc => {
 		if ( blc.dataset.pattern === id ) {
 			blc.children[ 2 ].textContent = name;
 		}
@@ -24,7 +26,7 @@ export function UInamePattern( id, name ) {
 }
 
 export function UIchangePatternSynth( patId, synthId ) {
-	UIsynths.get( synthId ).querySelector( ".synth-patterns" )
+	window.synths.get( synthId ).querySelector( ".synth-patterns" )
 		.prepend( UIpatterns.get( patId ) );
 }
 
@@ -40,7 +42,7 @@ export function UIupdatePatternContent( id ) {
 		elPat.querySelector( ".pattern-content" ).append( mat.rootElement );
 	}
 	elPat._gsuiRectMatrix.render( uiKeysToRects( get.keys( get.pattern( id ).keys ) ) );
-	UIpatternroll.getBlocks().forEach( ( elBlc, blcId ) => {
+	window.patterroll.getBlocks().forEach( ( elBlc, blcId ) => {
 		const blc = get.block( blcId );
 
 		if ( blc.pattern === id ) {

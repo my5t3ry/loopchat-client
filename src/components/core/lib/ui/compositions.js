@@ -6,21 +6,6 @@ import {Map as UIsynths, Map as UIpatterns} from "immutable";
 import {UItitle} from "./title";
 import {UIsynthsExpandSynth} from "./synths";
 
-
-const UIcompositions = Object.seal({
-    cloud: new Map(),
-    local: new Map(),
-    get(cmp) {
-        return this["local"].get(cmp.id);
-    },
-    set(cmp, html) {
-        this["local"].set(cmp.id, html);
-    },
-    delete(cmp) {
-        this["local"].delete(cmp.id);
-    },
-});
-
 export function UIcompositionsInit() {
     DOM.newCloudComposition.onclick = UIcompositionClickNewCloud;
     DOM.newLocalComposition.onclick = UIcompositionClickNewLocal;
@@ -58,7 +43,7 @@ export function UIcompositionBeforeUnload() {
 }
 
 export function UIcompositionOpened(cmp) {
-    const html = UIcompositions.get(cmp),
+    const html = window.compositions.get(cmp),
         par = html.root.parentNode;
 
     html.root.classList.add("cmp-loaded");
@@ -69,20 +54,20 @@ export function UIcompositionOpened(cmp) {
 }
 
 export function UIcompositionLoading(cmp, loading) {
-    UIcompositions.get(cmp).root.classList.toggle("cmp-loading", loading);
+    window.compositions.get(cmp).root.classList.toggle("cmp-loading", loading);
 }
 
 export function UIcompositionSavedStatus(cmp, saved) {
-    UIcompositions.get(cmp).root.classList.toggle("cmp-notSaved", !saved);
+    window.compositions.get(cmp).root.classList.toggle("cmp-notSaved", !saved);
     UItitle();
 }
 
 export function UIcompositionDeleted(cmp) {
-    const html = UIcompositions.get(cmp);
+    const html = window.compositions.get(cmp);
 
     if (html) {
         html.root.remove();
-        UIcompositions.delete(cmp);
+        window.compositions.delete(cmp);
     }
 }
 
@@ -99,7 +84,7 @@ export function UIcompositionAdded(cmp) {
     html.bpm.textContent = cmp.bpm;
     html.name.textContent = cmp.name;
     html.duration.textContent = DAWCoreBuilder.time.beatToMinSec(cmp.duration, cmp.bpm);
-    UIcompositions.set(cmp, html);
+    window.compositions.set(cmp, html);
     
      DOM.cmp.append(root);
 }

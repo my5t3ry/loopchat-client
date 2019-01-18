@@ -4,10 +4,6 @@ import gsuiTrack from "./gsuiTrack";
 export default class gsuiTracklist {
 	constructor() {
 
-		gsuiTracklist.template = document.querySelector( "#gsuiTracklist-template" );
-		gsuiTracklist.template.remove();
-		gsuiTracklist.template.removeAttribute( "id" );
-
 		const root = gsuiTracklist.template.cloneNode( true );
 
 		this.onchange =
@@ -68,3 +64,4 @@ export default class gsuiTracklist {
 		}, {} ) );
 	}
 }
+

@@ -2,7 +2,7 @@
 import DAWCoreBuilder from "../DAWCoreBuilder";
 import {Map as UIpatterns, Map as UIsynths} from "immutable";
 import {UIsynthsAddSynth, UIsynthsNameSynth} from "./synths";
-import {UIsynthChange} from "./synth";
+import {UIsynthChange, UIsynthOpen} from "./synth";
 import {UIaddPattern, UIchangePatternSynth, UInamePattern, UIupdatePatternContent} from "./patterns";
 import {UItitle} from "./title";
 
@@ -26,7 +26,7 @@ UIcompositionChanged.fn = new Map( [
 		DAWCoreBuilder.objectDeepAssign( window.patterroll.data, obj );
 	} ],
 	[ [ "loopA", "loopB" ], function() {
-		UIpatternroll.loop(
+		window.patterroll.loop(
 			DAW.get.loopA(),
 			DAW.get.loopB() );
 	} ],
@@ -68,20 +68,20 @@ UIcompositionChanged.fn = new Map( [
 		const bPM = DAW.get.beatsPerMeasure(),
 			sPB = DAW.get.stepsPerBeat();
 
-		UIpatternroll.timeSignature( bPM, sPB );
-		UIpianoroll.timeSignature( bPM, sPB );
+		window.patterroll.timeSignature( bPM, sPB );
+		window.pianoroll.timeSignature( bPM, sPB );
 		Object.keys( DAW.get.patterns() ).forEach( UIupdatePatternContent );
 	} ],
 	[ "bpm", function( { bpm } ) {
 		DOM.bpmNumber.textContent =
-		UIcompositions.get( DAW.get.id() ).bpm.textContent = bpm;
+			window.compositions.local.get( DAW.get.id() ).bpm.textContent = bpm;
 	} ],
 	[ "name", function( { name } ) {
 		UItitle();
-		UIcompositions.get( DAW.get.id() ).name.textContent = name;
+		window.compositions.local.get( DAW.get.id() ).name.textContent = name;
 	} ],
 	[ "duration", function( { duration } ) {
-		UIcompositions.get( DAW.get.id() ).duration.textContent =
+		window.compositions.local.get( DAW.get.id() ).duration.textContent =
 			DAWCoreBuilder.time.beatToMinSec( duration, DAW.get.bpm() );
 	} ],
 	[ "keys", function( { keys } ) {
@@ -93,7 +93,7 @@ UIcompositionChanged.fn = new Map( [
 				if ( patObj.keys === keysId ) {
 					UIupdatePatternContent( patId );
 					if ( patId === patOpened ) {
-						DAWCoreBuilder.objectDeepAssign( UIpianoroll.data, keysObj );
+						DAWCoreBuilder.objectDeepAssign( window.pianoroll.data, keysObj );
 					}
 					return true;
 				}
@@ -101,8 +101,8 @@ UIcompositionChanged.fn = new Map( [
 		} );
 	} ],
 	[ "synthOpened", function( { synthOpened }, prevObj ) {
-		const el = UIsynths.get( synthOpened ),
-			elPrev = UIsynths.get( prevObj.synthOpened );
+		const el = window.compositions.local.get( synthOpened ),
+			elPrev =  window.compositions.local.get( prevObj.synthOpened );
 
 		el && el.classList.add( "synth-selected" );
 		elPrev && elPrev.classList.remove( "synth-selected" );
@@ -119,10 +119,10 @@ UIcompositionChanged.fn = new Map( [
 		if ( pat ) {
 			el.classList.add( "selected" );
 			DAWCoreBuilder.objectDeepAssign( UIpianoroll.data, DAW.get.keys( pat.keys ) );
-			UIpianoroll.resetKey();
-			UIpianoroll.scrollToKeys();
+			window.pianoroll.resetKey();
+			window.pianoroll.scrollToKeys();
 		} else {
-			UIpianoroll.setPxPerBeat( 90 );
+			window.pianoroll.setPxPerBeat( 90 );
 		}
 		if ( elPrev ) {
 			elPrev.classList.remove( "selected" );

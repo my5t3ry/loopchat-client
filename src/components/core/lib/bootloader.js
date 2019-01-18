@@ -19,6 +19,16 @@ import {UIshortcutsPopupInit} from "./ui/shortcutsPopup";
 import gsuiPatternroll from "../../gs-lib/js/gsuiPatternroll";
 import gsuiPianoroll from "../../gs-lib/js/gsuiPianoroll";
 import gsuiSynthesizer from "../../gs-lib/js/gsuiSynthesizer";
+import gsuiTracklist from "../../gs-lib/js/gsuiTracklist";
+import gsuiTrack from "../../gs-lib/js/gsuiTrack";
+import gsuiSliderGroup from "../../gs-lib/js/gsuiSliderGroup";
+import  gsuiTimeline from "../../gs-lib/js/gsuiTimeline";
+import gsuiOscillator from "../../gs-lib/js/gsuiOscillator";
+import gsuiMixer from "../../gs-lib/js/gsuiMixer";
+import gsuiDragline from "../../gs-lib/js/gsuiDragline";
+import gsuiDotline from "../../gs-lib/js/gsuiDotline";
+import gsuiBlocksManager from "../../gs-lib/js/gsuiBlocksManager";
+import gsuiSlider from "../../gs-lib/js/gsuiSlider";
 
 export class Bootloader {
 
@@ -33,7 +43,8 @@ export class Bootloader {
     }
 
     async boot() {
-         UIdomInit();
+        UIdomInit();
+        this.initTemplates();
         const DAW = new DAWCoreBuilder(),
             hash = new Map(location.hash
                 .substr(1)
@@ -49,11 +60,43 @@ export class Bootloader {
         this.initBindings(DAW, DOM, hash);
         this.initUi();
     }
+    
 
     initBindings(DAW, DOM, hash) {
         // gswaPeriodicWaves.forEach((w, name) => (
         //     thisgsuiPeriodicWave.addWave(name, w.real, w.imag)
         // ));
+
+        const UIsynth = new gsuiSynthesizer();
+        window.synth = UIsynth;
+        window.compositions = Object.seal({
+            cloud: new Map(),
+            local: new Map(),
+            get(cmp) {
+                return this["local"].get(cmp.id);
+            },
+            set(cmp, html) {
+                this["local"].set(cmp.id, html);
+            },
+            delete(cmp) {
+                this["local"].delete(cmp.id);
+            },
+        });
+        window.UIpatterns = Object.seal({
+            local: new Map(),
+            get(cmp) {
+                return this["local"].get(cmp.id);
+            },
+            set(cmp, html) {
+                this["local"].set(cmp.id, html);
+            },
+            delete(cmp) {
+                this["local"].delete(cmp.id);
+            },
+        });
+
+
+
         window.onkeyup = UIkeyboardUp;
         window.onkeydown = UIkeyboardDown;
         window.onbeforeunload = UIcompositionBeforeUnload;
@@ -105,6 +148,129 @@ export class Bootloader {
         UIshortcutsPopupInit();
     }
 
+    initTemplates(){
+
+
+        gsuiTrack.template = document.querySelector( "#gsuiTrack-template" );
+        gsuiTrack.template.remove();
+        gsuiTrack.template.removeAttribute( "id" );
+
+
+
+
+
+
+
+        gsuiPianoroll.template = document.querySelector("#gsuiPianoroll-template");
+        gsuiPianoroll.template.remove();
+        gsuiPianoroll.template.removeAttribute("id");
+        gsuiPianoroll.blockTemplate = document.querySelector("#gsuiPianoroll-block-template");
+        gsuiPianoroll.blockTemplate.remove();
+        gsuiPianoroll.blockTemplate.removeAttribute("id");
+
+        gsuiPatternroll.template = document.querySelector("#gsuiPatternroll-template");
+        gsuiPatternroll.template.remove();
+        gsuiPatternroll.template.removeAttribute("id");
+        gsuiPatternroll.blockTemplate = document.querySelector("#gsuiPatternroll-block-template");
+        gsuiPatternroll.blockTemplate.remove();
+        gsuiPatternroll.blockTemplate.removeAttribute("id");
+
+
+        gsuiOscillator.template = document.querySelector( "#gsuiOscillator-template" );
+        gsuiOscillator.template.remove();
+        gsuiOscillator.template.removeAttribute( "id" );
+
+
+        gsuiMixer.template = document.querySelector( "#gsuiMixer-template" );
+        gsuiMixer.template.remove();
+        gsuiMixer.template.removeAttribute( "id" );
+
+        gsuiMixer.channelTemplate = document.querySelector( "#gsuiMixerChannel-template" );
+        gsuiMixer.channelTemplate.remove();
+        gsuiMixer.channelTemplate.removeAttribute( "id" );
+        gsuiDragline.template = document.querySelector( "#gsuiDragline-template" );
+        gsuiDragline.template.remove();
+        gsuiDragline.template.removeAttribute( "id" );
+
+
+        gsuiTimeline.template = document.querySelector( "#gsuiTimeline-template" );
+        gsuiTimeline.template.remove();
+        gsuiTimeline.template.removeAttribute( "id" );
+
+        document.addEventListener( "mousemove", e => {
+            gsuiTimeline._focused && gsuiTimeline._focused._mousemove( e );
+        } );
+        document.addEventListener( "mouseup", e => {
+            gsuiTimeline._focused && gsuiTimeline._focused._mouseup( e );
+        } );
+
+
+        gsuiTracklist.template = document.querySelector( "#gsuiTracklist-template" );
+        gsuiTracklist.template.remove();
+        gsuiTracklist.template.removeAttribute( "id" );
+        
+
+
+        document.addEventListener( "mousemove", e => {
+            gsuiDragline._focused && gsuiDragline._focused._mousemove( e );
+        } );
+        document.addEventListener( "mouseup", e => {
+            gsuiDragline._focused && gsuiDragline._focused._mouseup( e );
+        } );
+        document.addEventListener( "keydown", e => {
+            gsuiDragline._focused && gsuiDragline._focused._keydown( e );
+        } );
+
+
+        document.addEventListener( "mousemove", e => {
+            gsuiDotline.focused && gsuiDotline.focused._mousemoveDot( e );
+        } );
+        document.addEventListener( "mouseup", () => {
+            gsuiDotline.focused && gsuiDotline.focused._mouseupDot();
+        } );
+
+        document.addEventListener( "mousemove", e => {
+            gsuiBlocksManager._focused && gsuiBlocksManager._focused._mousemove( e );
+        } );
+        document.addEventListener( "mouseup", e => {
+            gsuiBlocksManager._focused && gsuiBlocksManager._focused._mouseup( e );
+        } );
+        document.addEventListener( "keyup", e => {
+            gsuiBlocksManager._focused && gsuiBlocksManager._focused._keyup( e );
+        } );
+
+        gsuiSynthesizer.template = document.querySelector( "#gsuiSynthesizer-template" );
+        gsuiSynthesizer.template.remove();
+        gsuiSynthesizer.template.removeAttribute("id");
+
+        gsuiSliderGroup.template = document.querySelector( "#gsuiSliderGroup-template" );
+        gsuiSliderGroup.template.remove();
+        gsuiSliderGroup.template.removeAttribute( "id" );
+        gsuiSliderGroup.sliderTemplate = document.querySelector( "#gsuiSliderGroup-slider-template" );
+        gsuiSliderGroup.sliderTemplate.remove();
+        gsuiSliderGroup.sliderTemplate.removeAttribute( "id" );
+
+
+        gsuiSlider.template = document.querySelector( "#gsuiSlider-template" );
+        gsuiSlider.template.remove();
+        gsuiSlider.template.removeAttribute( "id" );
+
+
+        document.addEventListener( "pointerlockchange", () => {
+            const el = document.pointerLockElement,
+                slider = el && el._gsuiSlider_instance;
+
+            if ( slider ) {
+                slider._locked = true;
+            }
+        } );
+
+
+        document.addEventListener( "mouseup", e => {
+            gsuiSliderGroup._focused && gsuiSliderGroup._focused._mouseup( e );
+        } );
+
+}
     checkDom() {
         return new Promise(function (resolve, reject) {
             function step() {

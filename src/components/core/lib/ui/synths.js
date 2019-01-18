@@ -1,22 +1,22 @@
 "use strict";
 
-const UIsynths = new Map();
+window.synths = new Map();
 
 export function UIsynthsAddSynth( id, obj ) {
 	const syn = DOM.synth.cloneNode( true );
 
 	syn.dataset.id = id;
-	UIsynths.set( id, syn );
+	window.synths.set( id, syn );
 	UIsynthsNameSynth( id, obj.name );
 	DOM.patterns.prepend( syn );
 }
 
 export function UIsynthsExpandSynth( id, b ) {
-	UIsynths.get( id ).classList.toggle( "synth-show", b );
+	window.synths.get( id ).classList.toggle( "synth-show", b );
 }
 
 export function UIsynthsNameSynth( id, name ) {
-	UIsynths.get( id ).querySelector( ".synth-name" ).textContent = name;
+	window.synths.get( id ).querySelector( ".synth-name" ).textContent = name;
 }
 
 export function UIsynthsInit() {

@@ -2,9 +2,6 @@
 
 export default class gsuiTimeline {
 	constructor() {
-
-		gsuiTimeline.template = document.querySelector("#gsuiTimeline-template");
-		
 		const root = gsuiTimeline.template.cloneNode( true ),
 			dom = {};
 
@@ -275,3 +272,5 @@ export default class gsuiTimeline {
 			this.beatRound( this._loopB ) );
 	}
 }
+
+

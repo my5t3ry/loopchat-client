@@ -7,13 +7,6 @@ import gsuiTracklist from "./gsuiTracklist";
 export default class gsuiPatternroll extends gsuiBlocksManager {
     constructor() {
 
-        gsuiPatternroll.template = document.querySelector("#gsuiPatternroll-template");
-        gsuiPatternroll.template.remove();
-        gsuiPatternroll.template.removeAttribute("id");
-        gsuiPatternroll.blockTemplate = document.querySelector("#gsuiPatternroll-block-template");
-        gsuiPatternroll.blockTemplate.remove();
-        gsuiPatternroll.blockTemplate.removeAttribute("id");
-
         const root = gsuiPatternroll.template.cloneNode(true);
 
         super(root);
@@ -314,3 +307,4 @@ export default class gsuiPatternroll extends gsuiBlocksManager {
         return true;
     }
 }
+

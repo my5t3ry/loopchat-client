@@ -6,15 +6,6 @@ import gsuiBeatlines from "./gsuiBeatlines"
 export default class gsuiBlocksManager {
 	constructor( root ) {
 
-		document.addEventListener( "mousemove", e => {
-			gsuiBlocksManager._focused && gsuiBlocksManager._focused._mousemove( e );
-		} );
-		document.addEventListener( "mouseup", e => {
-			gsuiBlocksManager._focused && gsuiBlocksManager._focused._mouseup( e );
-		} );
-		document.addEventListener( "keyup", e => {
-			gsuiBlocksManager._focused && gsuiBlocksManager._focused._keyup( e );
-		} );
 
 		this.rootElement = root;
 		this.__offset = 0;
@@ -600,3 +591,4 @@ export default class gsuiBlocksManager {
 		this.__blcsEditing = blcs;
 	}
 }
+

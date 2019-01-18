@@ -3,13 +3,6 @@
 export default class gsuiMixer {
 	constructor() {
 
-		gsuiMixer.template = document.querySelector( "#gsuiMixer-template" );
-		gsuiMixer.template.remove();
-		gsuiMixer.template.removeAttribute( "id" );
-
-		gsuiMixer.channelTemplate = document.querySelector( "#gsuiMixerChannel-template" );
-		gsuiMixer.channelTemplate.remove();
-		gsuiMixer.channelTemplate.removeAttribute( "id" );
 
 		const root = gsuiMixer.template.cloneNode( true ),
 			panMaster = root.querySelector( ".gsuiMixer-panMaster" ),

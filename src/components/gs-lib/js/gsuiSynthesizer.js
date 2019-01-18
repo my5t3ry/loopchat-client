@@ -1,11 +1,10 @@
 "use strict";
 
+import gsuiOscillator from "./gsuiOscillator";
+
 export default class gsuiSynthesizer {
 	constructor() {
 
-		gsuiSynthesizer.template = document.querySelector( "#gsuiSynthesizer-template" );
-		gsuiSynthesizer.template.remove();
-		gsuiSynthesizer.template.removeAttribute( "id" );
 
 		const root = gsuiSynthesizer.template.cloneNode( true );
 

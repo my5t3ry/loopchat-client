@@ -4,8 +4,7 @@ import gsuiSynthesizer from "../../../gs-lib/js/gsuiSynthesizer";
 
 export function UIsynthOpen( id ) {
 
-	const UIsynth = new gsuiSynthesizer();
-	UIsynth.empty();
+	window.synth.empty();
 	if ( !id ) {
 		DOM.synthName.textContent = "";
 	} else {
@@ -20,21 +19,22 @@ export function UIsynthChange( obj ) {
 	if ( "name" in obj ) {
 		DOM.synthName.textContent = obj.name;
 	}
-	UIsynth.change( obj );
+	window.synth.change( obj );
 }
 
 export function UIsynthInit() {
-	UIsynth.oninput = ( id, attr, val ) => {
+
+	window.synth.oninput = ( id, attr, val ) => {
 		DAW.liveChangeSynth( DAW.get.synthOpened(), {
 			oscillators: { [ id ]: { [ attr ]: val } }
 		} );
 	};
-	UIsynth.onchange = obj => {
+	window.synth.onchange = obj => {
 		DAW.compositionChange( { synths: {
 			[ DAW.get.synthOpened() ]: obj
 		} } );
 	};
-	UIsynth.setWaveList( Array.from( gswaPeriodicWaves.keys() ) );
+	window.synth.setWaveList( Array.from( gswaPeriodicWaves.keys() ) );
 	DOM.synthName.onclick = () => {
 		const id = DAW.get.synthOpened(),
 			name = DOM.synthName.textContent;
@@ -43,5 +43,5 @@ export function UIsynthInit() {
 			.then( name => DAW.nameSynth( id, name ) );
 	};
 	DOM.synthWrapper2.append( UIsynth.rootElement );
-	UIsynth.attached();
+	window.synth.attached();
 }

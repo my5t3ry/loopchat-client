@@ -3,6 +3,7 @@
 import gsuiBlocksManager from "./gsuiBlocksManager";
 import gsuiSliderGroup from "./gsuiSliderGroup";
 import gsuiKeys from "./gsuiKeys";
+import gsuiDragline from "./gsuiDragline";
 
 export default class gsuiPianoroll extends gsuiBlocksManager {
     constructor() {
@@ -12,12 +13,6 @@ export default class gsuiPianoroll extends gsuiBlocksManager {
             fr: ["do", "do#", "ré", "ré#", "mi", "fa", "fa#", "sol", "sol#", "la", "la#", "si"]
         };
 
-        gsuiPianoroll.template = document.querySelector("#gsuiPianoroll-template");
-        gsuiPianoroll.template.remove();
-        gsuiPianoroll.template.removeAttribute("id");
-        gsuiPianoroll.blockTemplate = document.querySelector("#gsuiPianoroll-block-template");
-        gsuiPianoroll.blockTemplate.remove();
-        gsuiPianoroll.blockTemplate.removeAttribute("id");
 
         const root = gsuiPianoroll.template.cloneNode(true),
             sideTop = root.querySelector(".gsuiPianoroll-sidePanelTop"),
@@ -550,3 +545,4 @@ export default class gsuiPianoroll extends gsuiBlocksManager {
         return true;
     }
 }
+

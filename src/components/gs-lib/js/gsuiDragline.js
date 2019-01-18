@@ -3,20 +3,7 @@
 export default class gsuiDragline {
 	constructor() {
 
-		gsuiDragline.template = document.querySelector( "#gsuiDragline-template" );
-		gsuiDragline.template.remove();
-		gsuiDragline.template.removeAttribute( "id" );
-
-		document.addEventListener( "mousemove", e => {
-			gsuiDragline._focused && gsuiDragline._focused._mousemove( e );
-		} );
-		document.addEventListener( "mouseup", e => {
-			gsuiDragline._focused && gsuiDragline._focused._mouseup( e );
-		} );
-		document.addEventListener( "keydown", e => {
-			gsuiDragline._focused && gsuiDragline._focused._keydown( e );
-		} );
-
+	
 		const root = gsuiDragline.template.cloneNode( true ),
 			svg = root.firstElementChild.firstElementChild;
 
@@ -148,3 +135,4 @@ export default class gsuiDragline {
 		this._render( e.pageX, e.pageY );
 	}
 }
+

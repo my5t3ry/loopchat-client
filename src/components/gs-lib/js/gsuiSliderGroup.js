@@ -5,19 +5,9 @@ import gsuiBeatlines from "./gsuiBeatlines";
 export default class gsuiSliderGroup {
 	constructor() {
 
-		gsuiSliderGroup.template = document.querySelector( "#gsuiSliderGroup-template" );
-		gsuiSliderGroup.template.remove();
-		gsuiSliderGroup.template.removeAttribute( "id" );
-		gsuiSliderGroup.sliderTemplate = document.querySelector( "#gsuiSliderGroup-slider-template" );
-		gsuiSliderGroup.sliderTemplate.remove();
-		gsuiSliderGroup.sliderTemplate.removeAttribute( "id" );
-
 // document.addEventListener( "mousemove", e => {
 // 	gsuiSliderGroup._focused && gsuiSliderGroup._focused._mousemove( e );
 // } );
-		document.addEventListener( "mouseup", e => {
-			gsuiSliderGroup._focused && gsuiSliderGroup._focused._mouseup( e );
-		} );
 
 		const root = gsuiSliderGroup.template.cloneNode( true ),
 			slidersWrap = root.querySelector( ".gsuiSliderGroup-slidersWrap" ),
@@ -222,3 +212,4 @@ export default class gsuiSliderGroup {
 		}
 	}
 }
+
